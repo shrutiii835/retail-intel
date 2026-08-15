@@ -1,0 +1,30 @@
+store_key,store_id,store_name,city,state,region,store_format,open_date
+1,S001,RetailIntel Mumbai Hypermarket,Mumbai,Maharashtra,West,Hypermarket,2022-12-27
+2,S002,RetailIntel Pune Express,Pune,Maharashtra,West,Express,2016-10-01
+3,S003,RetailIntel Ahmedabad Supermarket,Ahmedabad,Gujarat,West,Supermarket,2022-08-22
+4,S004,RetailIntel Surat Supermarket,Surat,Gujarat,West,Supermarket,2023-07-13
+5,S005,RetailIntel Delhi Express,Delhi,Delhi,North,Express,2017-02-25
+6,S006,RetailIntel Gurugram Hypermarket,Gurugram,Haryana,North,Hypermarket,2017-03-26
+7,S007,RetailIntel Noida Supermarket,Noida,Uttar Pradesh,North,Supermarket,2019-12-30
+8,S008,RetailIntel Jaipur Hypermarket,Jaipur,Rajasthan,North,Hypermarket,2020-10-09
+9,S009,RetailIntel Lucknow Supermarket,Lucknow,Uttar Pradesh,North,Supermarket,2019-10-18
+10,S010,RetailIntel Chandigarh Express,Chandigarh,Punjab,North,Express,2019-11-28
+11,S011,RetailIntel Bengaluru Supermarket,Bengaluru,Karnataka,South,Supermarket,2023-01-15
+12,S012,RetailIntel Mysuru Supermarket,Mysuru,Karnataka,South,Supermarket,2017-10-02
+13,S013,RetailIntel Chennai Supermarket,Chennai,Tamil Nadu,South,Supermarket,2020-06-05
+14,S014,RetailIntel Coimbatore Hypermarket,Coimbatore,Tamil Nadu,South,Hypermarket,2018-03-08
+15,S015,RetailIntel Hyderabad Hypermarket,Hyderabad,Telangana,South,Hypermarket,2021-10-28
+16,S016,RetailIntel Kochi Express,Kochi,Kerala,South,Express,2021-02-05
+17,S017,RetailIntel Visakhapatnam Express,Visakhapatnam,Andhra Pradesh,South,Express,2017-07-23
+18,S018,RetailIntel Kolkata Hypermarket,Kolkata,West Bengal,East,Hypermarket,2020-08-24
+19,S019,RetailIntel Bhubaneswar Express,Bhubaneswar,Odisha,East,Express,2018-09-14
+20,S020,RetailIntel Patna Express,Patna,Bihar,East,Express,2023-01-24
+21,S021,RetailIntel Guwahati Supermarket,Guwahati,Assam,East,Supermarket,2019-09-26
+22,S022,RetailIntel Ranchi Supermarket,Ranchi,Jharkhand,East,Supermarket,2023-03-10
+23,S023,RetailIntel Nagpur Supermarket,Nagpur,Maharashtra,West,Supermarket,2023-06-26
+24,S024,RetailIntel Indore Hypermarket,Indore,Madhya Pradesh,Central,Hypermarket,2019-04-07
+25,S025,RetailIntel Bhopal Express,Bhopal,Madhya Pradesh,Central,Express,2020-10-24
+26,S026,RetailIntel Raipur Supermarket,Raipur,Chhattisgarh,Central,Supermarket,2022-12-13
+27,S027,RetailIntel Vadodara Hypermarket,Vadodara,Gujarat,West,Hypermarket,2022-10-12
+28,S028,RetailIntel Thane Supermarket,Thane,Maharashtra,West,Supermarket,2019-02-05
+-1,UNKNOWN,Unknown Store,Unknown,Unknown,Unknown,Unknown,

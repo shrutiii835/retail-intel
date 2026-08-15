@@ -1,0 +1,673 @@
+{
+  "method": {
+    "warmup_runs": 1,
+    "measured_runs": 15,
+    "statistic": "median of measured runs",
+    "cache": "spark.catalog.clearCache() before every run",
+    "environment": "local[*] Spark 3.5.3, Delta 3.2.1",
+    "baseline_raw_csv": "Raw CSV extracts, cast at query time, quality rules applied at query time, transactions deduplicated at query time, masters joined on string business keys. Represents the pre-project manual workflow.",
+    "baseline_silver_delta": "Cleaned Silver Delta tables joined on string natural keys with revenue computed at query time. Isolates the dimensional model by holding the file format constant.",
+    "gold_star_schema": "Gold star schema: integer surrogate keys, stored net_revenue, partitioned by year_month, OPTIMIZE + ZORDER compacted."
+  },
+  "baseline_variance_reconciliation": {
+    "explanation": "Rows present in Gold but absent from a fresh recomputation of the raw CSV: their CURRENT source version failed validation and was quarantined, so the incremental pipeline retains the previously loaded known-good version.",
+    "extra_gold_rows": 4,
+    "explained_units": 7,
+    "explained_revenue": 39.71,
+    "unexplained_rows": 0,
+    "fully_explained": true,
+    "transaction_ids": [
+      "TXN00092040",
+      "TXN00002630",
+      "TXN00046573",
+      "TXN00049315"
+    ]
+  },
+  "summary": {
+    "queries": 6,
+    "measured_runs_per_variant": 15,
+    "all_results_equivalent": true,
+    "mean_improvement_vs_raw_csv_pct": 64.45,
+    "mean_improvement_vs_silver_delta_pct": 20.48,
+    "total_seconds_raw_csv": 3.5375,
+    "total_seconds_silver_delta": 1.6347,
+    "total_seconds_gold": 1.2363,
+    "total_time_improvement_vs_raw_csv_pct": 65.05,
+    "total_time_improvement_vs_silver_delta_pct": 24.37,
+    "queries_where_vs_raw_csv_is_significant": 6,
+    "queries_where_vs_silver_delta_is_significant": 0,
+    "interpretation": "The raw-CSV comparison is the project's true before/after and its margin far exceeds run-to-run noise, so it is a reportable result. The Silver-Delta comparison isolates the dimensional model alone; at this data volume that difference falls inside measurement noise on most queries and must NOT be reported as a performance claim."
+  },
+  "queries": [
+    {
+      "query": "Q1_store_performance",
+      "description": "Revenue and units by store, ranked",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.6028,
+        "mean_seconds": 0.6554,
+        "min_seconds": 0.5656,
+        "max_seconds": 0.7769,
+        "stdev_seconds": 0.0846,
+        "all_seconds": [
+          0.7164,
+          0.7337,
+          0.5936,
+          0.59,
+          0.5657,
+          0.7769,
+          0.5859,
+          0.573,
+          0.6028,
+          0.5656,
+          0.5751,
+          0.6963,
+          0.7695,
+          0.7567,
+          0.7306
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.3202,
+        "mean_seconds": 0.2823,
+        "min_seconds": 0.1722,
+        "max_seconds": 0.3899,
+        "stdev_seconds": 0.0886,
+        "all_seconds": [
+          0.3202,
+          0.1905,
+          0.3404,
+          0.3663,
+          0.3433,
+          0.2868,
+          0.3673,
+          0.1763,
+          0.1801,
+          0.3671,
+          0.3899,
+          0.1871,
+          0.1722,
+          0.3658,
+          0.1816
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.2621,
+        "mean_seconds": 0.2447,
+        "min_seconds": 0.1463,
+        "max_seconds": 0.3598,
+        "stdev_seconds": 0.0881,
+        "all_seconds": [
+          0.1658,
+          0.3146,
+          0.3284,
+          0.2879,
+          0.3347,
+          0.1562,
+          0.2621,
+          0.1575,
+          0.3598,
+          0.1585,
+          0.3394,
+          0.345,
+          0.1576,
+          0.1561,
+          0.1463
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 56.52,
+      "improvement_vs_silver_delta_pct": 18.14,
+      "speedup_vs_raw_csv_x": 2.3,
+      "speedup_vs_silver_delta_x": 1.22,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 28,
+          "revenue": 1957543.61,
+          "units": 260993
+        },
+        "silver_delta": {
+          "row_count": 28,
+          "revenue": 1957583.32,
+          "units": 261000
+        },
+        "gold": {
+          "row_count": 28,
+          "revenue": 1957583.32,
+          "units": 261000
+        }
+      }
+    },
+    {
+      "query": "Q2_sales_by_category",
+      "description": "Revenue and units by product category and sub-category",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.5459,
+        "mean_seconds": 0.6176,
+        "min_seconds": 0.503,
+        "max_seconds": 0.9152,
+        "stdev_seconds": 0.1174,
+        "all_seconds": [
+          0.5363,
+          0.5329,
+          0.7256,
+          0.5298,
+          0.6885,
+          0.5336,
+          0.7405,
+          0.5451,
+          0.503,
+          0.514,
+          0.5459,
+          0.7087,
+          0.9152,
+          0.6485,
+          0.5972
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.2586,
+        "mean_seconds": 0.2486,
+        "min_seconds": 0.158,
+        "max_seconds": 0.4812,
+        "stdev_seconds": 0.093,
+        "all_seconds": [
+          0.1742,
+          0.1731,
+          0.1873,
+          0.283,
+          0.1596,
+          0.3323,
+          0.158,
+          0.1633,
+          0.3289,
+          0.3164,
+          0.4812,
+          0.2686,
+          0.2586,
+          0.1607,
+          0.2835
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.2957,
+        "mean_seconds": 0.3158,
+        "min_seconds": 0.1436,
+        "max_seconds": 0.6012,
+        "stdev_seconds": 0.128,
+        "all_seconds": [
+          0.1528,
+          0.4228,
+          0.1531,
+          0.3118,
+          0.2899,
+          0.2726,
+          0.4382,
+          0.3073,
+          0.6012,
+          0.297,
+          0.2957,
+          0.2822,
+          0.1436,
+          0.2727,
+          0.496
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 45.83,
+      "improvement_vs_silver_delta_pct": -14.35,
+      "speedup_vs_raw_csv_x": 1.85,
+      "speedup_vs_silver_delta_x": 0.87,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 27,
+          "revenue": 1957543.61,
+          "units": 260993
+        },
+        "silver_delta": {
+          "row_count": 27,
+          "revenue": 1957583.32,
+          "units": 261000
+        },
+        "gold": {
+          "row_count": 27,
+          "revenue": 1957583.32,
+          "units": 261000
+        }
+      }
+    },
+    {
+      "query": "Q3_campaign_performance",
+      "description": "Revenue, units and discount by campaign",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.6738,
+        "mean_seconds": 0.665,
+        "min_seconds": 0.4882,
+        "max_seconds": 0.8452,
+        "stdev_seconds": 0.1191,
+        "all_seconds": [
+          0.6985,
+          0.84,
+          0.8452,
+          0.521,
+          0.703,
+          0.6527,
+          0.6989,
+          0.7025,
+          0.4882,
+          0.5189,
+          0.6738,
+          0.6573,
+          0.4917,
+          0.6547,
+          0.8285
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.2987,
+        "mean_seconds": 0.2667,
+        "min_seconds": 0.1505,
+        "max_seconds": 0.482,
+        "stdev_seconds": 0.1007,
+        "all_seconds": [
+          0.3039,
+          0.3613,
+          0.1654,
+          0.1505,
+          0.2968,
+          0.2987,
+          0.3188,
+          0.1631,
+          0.482,
+          0.3155,
+          0.1693,
+          0.3308,
+          0.1526,
+          0.3363,
+          0.156
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.1451,
+        "mean_seconds": 0.203,
+        "min_seconds": 0.1368,
+        "max_seconds": 0.3442,
+        "stdev_seconds": 0.0891,
+        "all_seconds": [
+          0.3385,
+          0.153,
+          0.1387,
+          0.1411,
+          0.3442,
+          0.2924,
+          0.1451,
+          0.1368,
+          0.3259,
+          0.1456,
+          0.1412,
+          0.3174,
+          0.1426,
+          0.144,
+          0.1388
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 78.47,
+      "improvement_vs_silver_delta_pct": 51.42,
+      "speedup_vs_raw_csv_x": 4.64,
+      "speedup_vs_silver_delta_x": 2.06,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 38,
+          "revenue": 1957543.61,
+          "units": 260993
+        },
+        "silver_delta": {
+          "row_count": 38,
+          "revenue": 1957583.32,
+          "units": 261000
+        },
+        "gold": {
+          "row_count": 38,
+          "revenue": 1957583.32,
+          "units": 261000
+        }
+      }
+    },
+    {
+      "query": "Q4_monthly_by_region",
+      "description": "Monthly revenue trend by region",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.5658,
+        "mean_seconds": 0.6362,
+        "min_seconds": 0.4864,
+        "max_seconds": 1.0452,
+        "stdev_seconds": 0.1671,
+        "all_seconds": [
+          0.5658,
+          0.5098,
+          0.7725,
+          0.682,
+          0.4864,
+          1.0452,
+          0.5349,
+          0.5279,
+          0.6151,
+          0.8542,
+          0.4942,
+          0.6366,
+          0.5032,
+          0.4984,
+          0.8175
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.3032,
+        "mean_seconds": 0.2616,
+        "min_seconds": 0.1438,
+        "max_seconds": 0.5091,
+        "stdev_seconds": 0.113,
+        "all_seconds": [
+          0.3591,
+          0.344,
+          0.3225,
+          0.5091,
+          0.1645,
+          0.3032,
+          0.1575,
+          0.3431,
+          0.1567,
+          0.1475,
+          0.1483,
+          0.1438,
+          0.3142,
+          0.3427,
+          0.1677
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.1886,
+        "mean_seconds": 0.25,
+        "min_seconds": 0.1674,
+        "max_seconds": 0.3745,
+        "stdev_seconds": 0.0864,
+        "all_seconds": [
+          0.2177,
+          0.186,
+          0.1886,
+          0.1779,
+          0.35,
+          0.3066,
+          0.3574,
+          0.181,
+          0.3745,
+          0.1781,
+          0.1674,
+          0.3439,
+          0.1844,
+          0.3674,
+          0.1695
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 66.67,
+      "improvement_vs_silver_delta_pct": 37.8,
+      "speedup_vs_raw_csv_x": 3.0,
+      "speedup_vs_silver_delta_x": 1.61,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 20,
+          "revenue": 1957543.61,
+          "units": 260993
+        },
+        "silver_delta": {
+          "row_count": 20,
+          "revenue": 1957583.32,
+          "units": 261000
+        },
+        "gold": {
+          "row_count": 20,
+          "revenue": 1957583.32,
+          "units": 261000
+        }
+      }
+    },
+    {
+      "query": "Q5_filtered_month_region",
+      "description": "Revenue by category and store for 202503, South region (filtered \u2014 exercises partition pruning)",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.6561,
+        "mean_seconds": 0.6234,
+        "min_seconds": 0.4734,
+        "max_seconds": 0.8487,
+        "stdev_seconds": 0.1047,
+        "all_seconds": [
+          0.7256,
+          0.6549,
+          0.508,
+          0.6694,
+          0.657,
+          0.6561,
+          0.5056,
+          0.6612,
+          0.6717,
+          0.5284,
+          0.4734,
+          0.6422,
+          0.476,
+          0.8487,
+          0.6724
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.3065,
+        "mean_seconds": 0.2667,
+        "min_seconds": 0.17,
+        "max_seconds": 0.3659,
+        "stdev_seconds": 0.0835,
+        "all_seconds": [
+          0.1998,
+          0.3659,
+          0.3358,
+          0.1861,
+          0.3065,
+          0.3284,
+          0.1804,
+          0.1843,
+          0.1767,
+          0.3342,
+          0.358,
+          0.3594,
+          0.3395,
+          0.1757,
+          0.17
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.181,
+        "mean_seconds": 0.2246,
+        "min_seconds": 0.1614,
+        "max_seconds": 0.3822,
+        "stdev_seconds": 0.0763,
+        "all_seconds": [
+          0.181,
+          0.3137,
+          0.1711,
+          0.1694,
+          0.1696,
+          0.3474,
+          0.1822,
+          0.1646,
+          0.1741,
+          0.1614,
+          0.2868,
+          0.288,
+          0.3822,
+          0.2012,
+          0.1763
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 72.41,
+      "improvement_vs_silver_delta_pct": 40.95,
+      "speedup_vs_raw_csv_x": 3.62,
+      "speedup_vs_silver_delta_x": 1.69,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 49,
+          "revenue": 139526.15,
+          "units": 19124
+        },
+        "silver_delta": {
+          "row_count": 49,
+          "revenue": 139526.15,
+          "units": 19124
+        },
+        "gold": {
+          "row_count": 49,
+          "revenue": 139526.15,
+          "units": 19124
+        }
+      }
+    },
+    {
+      "query": "Q6_single_campaign_drilldown",
+      "description": "Store-level drilldown for campaign C010 (filtered \u2014 exercises ZORDER clustering)",
+      "baseline_raw_csv": {
+        "runs": 15,
+        "median_seconds": 0.4931,
+        "mean_seconds": 0.5737,
+        "min_seconds": 0.4525,
+        "max_seconds": 1.0161,
+        "stdev_seconds": 0.1498,
+        "all_seconds": [
+          0.4931,
+          0.4661,
+          0.6127,
+          0.4713,
+          0.6521,
+          0.4594,
+          0.4555,
+          0.4633,
+          1.0161,
+          0.6322,
+          0.4525,
+          0.65,
+          0.6347,
+          0.4849,
+          0.6615
+        ]
+      },
+      "baseline_silver_delta": {
+        "runs": 15,
+        "median_seconds": 0.1475,
+        "mean_seconds": 0.2083,
+        "min_seconds": 0.1244,
+        "max_seconds": 0.3258,
+        "stdev_seconds": 0.0862,
+        "all_seconds": [
+          0.1475,
+          0.1366,
+          0.2988,
+          0.2807,
+          0.1358,
+          0.1274,
+          0.3224,
+          0.1381,
+          0.3258,
+          0.286,
+          0.1349,
+          0.2102,
+          0.1307,
+          0.1244,
+          0.3253
+        ]
+      },
+      "gold_star_schema": {
+        "runs": 15,
+        "median_seconds": 0.1638,
+        "mean_seconds": 0.1886,
+        "min_seconds": 0.157,
+        "max_seconds": 0.3485,
+        "stdev_seconds": 0.0622,
+        "all_seconds": [
+          0.1595,
+          0.1638,
+          0.1691,
+          0.157,
+          0.3485,
+          0.1822,
+          0.1694,
+          0.1633,
+          0.3331,
+          0.1707,
+          0.1611,
+          0.1573,
+          0.1614,
+          0.1689,
+          0.1628
+        ]
+      },
+      "improvement_vs_raw_csv_pct": 66.78,
+      "improvement_vs_silver_delta_pct": -11.05,
+      "speedup_vs_raw_csv_x": 3.01,
+      "speedup_vs_silver_delta_x": 0.9,
+      "results_equivalent": true,
+      "vs_raw_csv_significant": true,
+      "vs_silver_delta_significant": false,
+      "silver_matches_gold_exactly": true,
+      "csv_reconciles_to_gold": true,
+      "totals": {
+        "raw_csv": {
+          "row_count": 23,
+          "revenue": 1714.89,
+          "units": 649
+        },
+        "silver_delta": {
+          "row_count": 23,
+          "revenue": 1714.89,
+          "units": 649
+        },
+        "gold": {
+          "row_count": 23,
+          "revenue": 1714.89,
+          "units": 649
+        }
+      }
+    }
+  ]
+}

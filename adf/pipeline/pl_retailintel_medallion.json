@@ -1,0 +1,245 @@
+{
+  "name": "pl_retailintel_medallion",
+  "properties": {
+    "description": "RetailIntel end-to-end batch. ADF moves data and orchestrates; Databricks transforms. The pipeline copies one landing batch into the Bronze raw zone on ADLS, then invokes the three medallion notebooks in order. The incremental watermark itself lives in the Delta control table (_control/watermarks) so it can be advanced transactionally alongside the data write - see adf/README.md.",
+    "parameters": {
+      "batch_id": {
+        "type": "string",
+        "defaultValue": "batch_01_initial",
+        "description": "Which landing batch to process."
+      },
+      "full_reload": {
+        "type": "bool",
+        "defaultValue": false,
+        "description": "Ignore watermarks and rebuild every layer."
+      }
+    },
+    "variables": {
+      "source_list": {
+        "type": "Array"
+      }
+    },
+    "activities": [
+      {
+        "name": "SetSourceList",
+        "description": "Reference data is listed first so that Silver's referential-integrity rules always have a master to validate against, even on the very first run.",
+        "type": "SetVariable",
+        "dependsOn": [],
+        "typeProperties": {
+          "variableName": "source_list",
+          "value": [
+            "products",
+            "stores",
+            "campaigns",
+            "sales",
+            "inventory"
+          ]
+        }
+      },
+      {
+        "name": "CopyEachSourceToRaw",
+        "description": "Parameterised fan-out: one Copy activity definition serves all five feeds instead of five near-identical pipelines. Sequential because ordering matters for the masters.",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "SetSourceList",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@variables('source_list')",
+            "type": "Expression"
+          },
+          "isSequential": true,
+          "activities": [
+            {
+              "name": "CopySourceToRaw",
+              "type": "Copy",
+              "policy": {
+                "timeout": "0.01:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 60,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "storeSettings": {
+                    "type": "AzureBlobFSReadSettings",
+                    "recursive": true,
+                    "wildcardFileName": "*.csv",
+                    "enablePartitionDiscovery": false
+                  },
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  },
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".csv"
+                  }
+                },
+                "enableStaging": false,
+                "validateDataConsistency": true
+              },
+              "inputs": [
+                {
+                  "referenceName": "ds_landing_csv",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "batch_id": {
+                      "value": "@pipeline().parameters.batch_id",
+                      "type": "Expression"
+                    },
+                    "source_name": {
+                      "value": "@item()",
+                      "type": "Expression"
+                    }
+                  }
+                }
+              ],
+              "outputs": [
+                {
+                  "referenceName": "ds_raw_csv",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "batch_id": {
+                      "value": "@pipeline().parameters.batch_id",
+                      "type": "Expression"
+                    },
+                    "source_name": {
+                      "value": "@item()",
+                      "type": "Expression"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "BronzeIngest",
+        "description": "Applies the watermark predicate and writes Bronze Delta. Fails the pipeline if a required column is missing (a broken data contract has no sensible partial result).",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "CopyEachSourceToRaw",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 120
+        },
+        "typeProperties": {
+          "notebookPath": "/Repos/RetailIntel/notebooks/bronze/01_bronze_ingest",
+          "baseParameters": {
+            "batch_id": {
+              "value": "@pipeline().parameters.batch_id",
+              "type": "Expression"
+            },
+            "run_id": {
+              "value": "@pipeline().RunId",
+              "type": "Expression"
+            },
+            "full_reload": {
+              "value": "@string(pipeline().parameters.full_reload)",
+              "type": "Expression"
+            }
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_databricks",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "SilverBuild",
+        "description": "Validate, quarantine, deduplicate, MERGE.",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "BronzeIngest",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 120
+        },
+        "typeProperties": {
+          "notebookPath": "/Repos/RetailIntel/notebooks/silver/02_silver_build",
+          "baseParameters": {
+            "batch_id": {
+              "value": "@pipeline().parameters.batch_id",
+              "type": "Expression"
+            },
+            "run_id": {
+              "value": "@pipeline().RunId",
+              "type": "Expression"
+            },
+            "full_reload": {
+              "value": "@string(pipeline().parameters.full_reload)",
+              "type": "Expression"
+            }
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_databricks",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "GoldBuild",
+        "description": "Dimensions, facts, ROI mart, then OPTIMIZE + ZORDER.",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "SilverBuild",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 120
+        },
+        "typeProperties": {
+          "notebookPath": "/Repos/RetailIntel/notebooks/gold/03_gold_build",
+          "baseParameters": {
+            "batch_id": {
+              "value": "@pipeline().parameters.batch_id",
+              "type": "Expression"
+            },
+            "run_id": {
+              "value": "@pipeline().RunId",
+              "type": "Expression"
+            },
+            "full_reload": {
+              "value": "@string(pipeline().parameters.full_reload)",
+              "type": "Expression"
+            }
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_databricks",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ],
+    "annotations": ["RetailIntel", "medallion", "incremental"],
+    "folder": {
+      "name": "RetailIntel"
+    }
+  }
+}

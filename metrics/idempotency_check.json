@@ -1,0 +1,70 @@
+{
+  "replayed_batch": "batch_03_incremental",
+  "rerun_run_id": "run_20260814T042128_120d4b",
+  "before": {
+    "silver_sales": {
+      "rows": 130023,
+      "net_revenue": 1957583.32,
+      "quantity": 261000
+    },
+    "silver_inventory": {
+      "rows": 74800,
+      "stock_quantity": 1368511
+    },
+    "gold_fact_sales": {
+      "rows": 130023,
+      "net_revenue": 1957583.32,
+      "quantity": 261000
+    },
+    "gold_fact_inventory": {
+      "rows": 74800,
+      "stock_quantity": 1368511
+    },
+    "gold_dim_product": {
+      "rows": 221
+    },
+    "gold_dim_store": {
+      "rows": 29
+    },
+    "gold_dim_campaign": {
+      "rows": 38
+    }
+  },
+  "after": {
+    "silver_sales": {
+      "rows": 130023,
+      "net_revenue": 1957583.32,
+      "quantity": 261000
+    },
+    "silver_inventory": {
+      "rows": 74800,
+      "stock_quantity": 1368511
+    },
+    "gold_fact_sales": {
+      "rows": 130023,
+      "net_revenue": 1957583.32,
+      "quantity": 261000
+    },
+    "gold_fact_inventory": {
+      "rows": 74800,
+      "stock_quantity": 1368511
+    },
+    "gold_dim_product": {
+      "rows": 221
+    },
+    "gold_dim_store": {
+      "rows": 29
+    },
+    "gold_dim_campaign": {
+      "rows": 38
+    }
+  },
+  "differences": {},
+  "idempotent": true,
+  "mechanisms": [
+    "Bronze watermark filters the already-processed window to zero rows",
+    "Bronze replaceWhere replaces the _batch_id partition rather than appending",
+    "Silver MERGE on business key updates in place",
+    "Gold MERGE on transaction_id (and inventory grain) updates in place"
+  ]
+}

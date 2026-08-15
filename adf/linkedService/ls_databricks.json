@@ -1,0 +1,34 @@
+{
+  "name": "ls_databricks",
+  "properties": {
+    "description": "Azure Databricks compute for the transformation notebooks. Authenticates with the Data Factory managed identity rather than a personal access token, so there is no long-lived secret to store or rotate. Uses a job cluster (newClusterVersion) rather than an interactive cluster: the cluster is created for the run and terminated when it finishes, so nothing is left billing after the pipeline completes.",
+    "type": "AzureDatabricks",
+    "typeProperties": {
+      "domain": "https://@{linkedService().workspace_url}",
+      "authentication": "MSI",
+      "workspaceResourceId": "@{linkedService().workspace_resource_id}",
+      "newClusterNodeType": "Standard_DS3_v2",
+      "newClusterNumOfWorker": "0",
+      "newClusterVersion": "15.4.x-scala2.12",
+      "newClusterSparkConf": {
+        "spark.master": "local[*, 4]",
+        "spark.databricks.cluster.profile": "singleNode",
+        "spark.sql.shuffle.partitions": "8"
+      },
+      "newClusterCustomTags": {
+        "ResourceClass": "SingleNode",
+        "project": "RetailIntel"
+      },
+      "newClusterInitScripts": []
+    },
+    "parameters": {
+      "workspace_url": {
+        "type": "string"
+      },
+      "workspace_resource_id": {
+        "type": "string"
+      }
+    },
+    "annotations": ["RetailIntel"]
+  }
+}

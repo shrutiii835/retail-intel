@@ -1,0 +1,41 @@
+{
+  "name": "ds_raw_csv",
+  "properties": {
+    "description": "Landing zone inside the lakehouse container. The Copy activity lands the batch here untouched; the Bronze notebook then applies the watermark predicate and writes Delta. Schema is deliberately left empty so a new source column does not break the Copy - the structural contract is enforced in Bronze, where a missing column can be reported with a precise error.",
+    "linkedServiceName": {
+      "referenceName": "ls_adls_gen2",
+      "type": "LinkedServiceReference",
+      "parameters": {
+        "storage_account": {
+          "value": "@dataset().storage_account",
+          "type": "Expression"
+        }
+      }
+    },
+    "parameters": {
+      "batch_id": { "type": "string" },
+      "source_name": { "type": "string" },
+      "storage_account": {
+        "type": "string",
+        "defaultValue": "stretailintel"
+      }
+    },
+    "annotations": ["RetailIntel"],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": "lakehouse",
+        "folderPath": {
+          "value": "@concat('raw/', dataset().batch_id, '/', dataset().source_name)",
+          "type": "Expression"
+        }
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  }
+}

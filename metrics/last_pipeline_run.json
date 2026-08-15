@@ -1,0 +1,413 @@
+[
+  {
+    "batch_id": "batch_01_initial",
+    "run_id": "run_20260813T205720_718a4a",
+    "layers": {
+      "bronze": [
+        {
+          "source": "products",
+          "rows_available": 220,
+          "rows_ingested": 220,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "1900-01-01 00:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "stores",
+          "rows_available": 28,
+          "rows_ingested": 28,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "1900-01-01 00:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "campaigns",
+          "rows_available": 36,
+          "rows_ingested": 36,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "1900-01-01 00:00:00",
+          "watermark_to": "2025-04-08 00:00:00",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "sales",
+          "rows_available": 99908,
+          "rows_ingested": 99908,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "1900-01-01 00:00:00",
+          "watermark_to": "2025-03-31 21:59:24",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_available": 57200,
+          "rows_ingested": 57200,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "1900-01-01 00:00:00",
+          "watermark_to": "2025-03-30 23:00:00",
+          "status": "SUCCESS"
+        }
+      ],
+      "silver": [
+        {
+          "source": "products",
+          "rows_read": 220,
+          "rows_valid": 220,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 220,
+          "updated": 0,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "stores",
+          "rows_read": 28,
+          "rows_valid": 28,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 28,
+          "updated": 0,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "campaigns",
+          "rows_read": 36,
+          "rows_valid": 36,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 36,
+          "updated": 0,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "sales",
+          "rows_read": 99908,
+          "rows_valid": 98456,
+          "rows_rejected": 1452,
+          "duplicates_removed": 2384,
+          "inserted": 96072,
+          "updated": 0,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_read": 57200,
+          "rows_valid": 57200,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 57200,
+          "updated": 0,
+          "status": "SUCCESS"
+        }
+      ],
+      "gold": [
+        {
+          "table": "dim_date",
+          "rows": 182
+        },
+        {
+          "table": "dim_product",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_store",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_campaign",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "fact_sales",
+          "rows_read": 96072,
+          "inserted": 96072,
+          "updated": 0
+        },
+        {
+          "table": "fact_inventory_snapshot",
+          "rows_read": 57200,
+          "inserted": 57200,
+          "updated": 0
+        }
+      ]
+    },
+    "duration_seconds": 56.58
+  },
+  {
+    "batch_id": "batch_02_incremental",
+    "run_id": "run_20260813T205816_47b78b",
+    "layers": {
+      "bronze": [
+        {
+          "source": "products",
+          "rows_available": 220,
+          "rows_ingested": 0,
+          "watermark_from": "2024-12-15 09:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "stores",
+          "rows_available": 28,
+          "rows_ingested": 0,
+          "watermark_from": "2024-12-15 09:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "campaigns",
+          "rows_available": 36,
+          "rows_ingested": 0,
+          "watermark_from": "2025-04-08 00:00:00",
+          "watermark_to": "2025-04-08 00:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "sales",
+          "rows_available": 17529,
+          "rows_ingested": 17529,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "2025-03-31 21:59:24",
+          "watermark_to": "2025-04-15 21:59:24",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_available": 8800,
+          "rows_ingested": 8800,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "2025-03-30 23:00:00",
+          "watermark_to": "2025-04-13 23:00:00",
+          "status": "SUCCESS"
+        }
+      ],
+      "silver": [
+        {
+          "source": "products",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "stores",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "campaigns",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "sales",
+          "rows_read": 17529,
+          "rows_valid": 17247,
+          "rows_rejected": 282,
+          "duplicates_removed": 270,
+          "inserted": 16759,
+          "updated": 218,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_read": 8800,
+          "rows_valid": 8800,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 8800,
+          "updated": 0,
+          "status": "SUCCESS"
+        }
+      ],
+      "gold": [
+        {
+          "table": "dim_date",
+          "rows": 182
+        },
+        {
+          "table": "dim_product",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_store",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_campaign",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "fact_sales",
+          "rows_read": 16977,
+          "inserted": 16759,
+          "updated": 218
+        },
+        {
+          "table": "fact_inventory_snapshot",
+          "rows_read": 8800,
+          "inserted": 8800,
+          "updated": 0
+        }
+      ]
+    },
+    "duration_seconds": 38.85
+  },
+  {
+    "batch_id": "batch_03_incremental",
+    "run_id": "run_20260813T205855_87e9c1",
+    "layers": {
+      "bronze": [
+        {
+          "source": "products",
+          "rows_available": 220,
+          "rows_ingested": 0,
+          "watermark_from": "2024-12-15 09:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "stores",
+          "rows_available": 28,
+          "rows_ingested": 0,
+          "watermark_from": "2024-12-15 09:00:00",
+          "watermark_to": "2024-12-15 09:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "campaigns",
+          "rows_available": 36,
+          "rows_ingested": 0,
+          "watermark_from": "2025-04-08 00:00:00",
+          "watermark_to": "2025-04-08 00:00:00",
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "sales",
+          "rows_available": 19690,
+          "rows_ingested": 17938,
+          "rows_filtered_by_watermark": 1752,
+          "watermark_from": "2025-04-15 21:59:24",
+          "watermark_to": "2025-04-30 21:59:24",
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_available": 8800,
+          "rows_ingested": 8800,
+          "rows_filtered_by_watermark": 0,
+          "watermark_from": "2025-04-13 23:00:00",
+          "watermark_to": "2025-04-27 23:00:00",
+          "status": "SUCCESS"
+        }
+      ],
+      "silver": [
+        {
+          "source": "products",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "stores",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "campaigns",
+          "rows_read": 0,
+          "rows_valid": 0,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 0,
+          "updated": 0,
+          "status": "SUCCESS_NO_DATA"
+        },
+        {
+          "source": "sales",
+          "rows_read": 17938,
+          "rows_valid": 17670,
+          "rows_rejected": 268,
+          "duplicates_removed": 291,
+          "inserted": 17192,
+          "updated": 187,
+          "status": "SUCCESS"
+        },
+        {
+          "source": "inventory",
+          "rows_read": 8800,
+          "rows_valid": 8800,
+          "rows_rejected": 0,
+          "duplicates_removed": 0,
+          "inserted": 8800,
+          "updated": 0,
+          "status": "SUCCESS"
+        }
+      ],
+      "gold": [
+        {
+          "table": "dim_date",
+          "rows": 182
+        },
+        {
+          "table": "dim_product",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_store",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "dim_campaign",
+          "inserted": 0,
+          "updated": 0
+        },
+        {
+          "table": "fact_sales",
+          "rows_read": 17379,
+          "inserted": 17192,
+          "updated": 187
+        },
+        {
+          "table": "fact_inventory_snapshot",
+          "rows_read": 8800,
+          "inserted": 8800,
+          "updated": 0
+        }
+      ]
+    },
+    "duration_seconds": 37.33
+  }
+]

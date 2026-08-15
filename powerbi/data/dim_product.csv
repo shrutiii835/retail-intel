@@ -1,0 +1,222 @@
+product_key,product_id,product_name,category,sub_category,brand,unit_cost,list_price,gross_margin_pct
+1,P0001,Pinecrest Bath 430,Personal Care,Bath,Pinecrest,6.94,11.73,0.4084
+2,P0002,Greenfield Pasta & Rice 387,Packaged Food,Pasta & Rice,Greenfield,11.09,14.49,0.2346
+3,P0003,Northwind Biscuits 634,Snacks,Biscuits,Northwind,7.86,11.81,0.3345
+4,P0004,Aurora Juices 960,Beverages,Juices,Aurora,0.67,1.26,0.4683
+5,P0005,Aurora Frozen Meals 715,Frozen,Frozen Meals,Aurora,12.50,17.04,0.2664
+6,P0006,Vantage Water 159,Beverages,Water,Vantage,2.86,4.19,0.3174
+7,P0007,Solera Bath 611,Personal Care,Bath,Solera,6.08,9.25,0.3427
+8,P0008,Silverline Ice Cream 701,Frozen,Ice Cream,Silverline,2.94,4.42,0.3348
+9,P0009,Greenfield Water 479,Beverages,Water,Greenfield,3.51,6.71,0.4769
+10,P0010,Fairmont Coffee & Tea 423,Beverages,Coffee & Tea,Fairmont,6.76,9.07,0.2547
+11,P0011,Marlow Sauces 722,Packaged Food,Sauces,Marlow,3.88,5.02,0.2271
+12,P0012,Silverline Milk 763,Dairy,Milk,Silverline,9.78,13.81,0.2918
+13,P0013,Marlow Canned 929,Packaged Food,Canned,Marlow,3.48,5.22,0.3333
+14,P0014,Blue Harbour Pasta & Rice 200,Packaged Food,Pasta & Rice,Blue Harbour,5.08,6.97,0.2712
+15,P0015,Kestrel Nuts 127,Snacks,Nuts,Kestrel,5.50,7.09,0.2243
+16,P0016,Vantage Bath 319,Personal Care,Bath,Vantage,14.54,19.79,0.2653
+17,P0017,Blue Harbour Skin Care 786,Personal Care,Skin Care,Blue Harbour,13.95,17.97,0.2237
+18,P0018,Marlow Biscuits 463,Snacks,Biscuits,Marlow,3.76,5.12,0.2656
+19,P0019,Pinecrest Soft Drinks 832,Beverages,Soft Drinks,Pinecrest,5.11,8.11,0.3699
+20,P0020,Blue Harbour Coffee & Tea 251,Beverages,Coffee & Tea,Blue Harbour,4.56,7.97,0.4279
+21,P0021,Kestrel Juices 112,Beverages,Juices,Kestrel,3.02,4.62,0.3463
+22,P0022,Marlow Skin Care 196,Personal Care,Skin Care,Marlow,6.81,12.64,0.4612
+23,P0023,Blue Harbour Soft Drinks 123,Beverages,Soft Drinks,Blue Harbour,1.30,2.24,0.4196
+24,P0024,Blue Harbour Skin Care 282,Personal Care,Skin Care,Blue Harbour,5.18,7.31,0.2914
+25,P0025,Silverline Nuts 132,Snacks,Nuts,Silverline,0.74,1.42,0.4789
+26,P0026,Greenfield Frozen Veg 949,Frozen,Frozen Veg,Greenfield,11.50,17.32,0.3360
+27,P0027,Northwind Frozen Meals 658,Frozen,Frozen Meals,Northwind,7.95,14.83,0.4639
+28,P0028,Fairmont Oral Care 710,Personal Care,Oral Care,Fairmont,8.75,16.39,0.4661
+29,P0029,Fairmont Milk 255,Dairy,Milk,Fairmont,2.85,3.89,0.2674
+30,P0030,Marlow Frozen Meals 590,Frozen,Frozen Meals,Marlow,6.41,9.21,0.3040
+31,P0031,Blue Harbour Frozen Veg 205,Frozen,Frozen Veg,Blue Harbour,6.87,10.69,0.3573
+32,P0032,Blue Harbour Milk 116,Dairy,Milk,Blue Harbour,6.02,8.54,0.2951
+33,P0033,Halcyon Chocolate 395,Snacks,Chocolate,Halcyon,2.23,3.62,0.3840
+34,P0034,Marlow Chips 614,Snacks,Chips,Marlow,5.28,8.60,0.3860
+35,P0035,Solera Pasta & Rice 486,Packaged Food,Pasta & Rice,Solera,5.56,10.30,0.4602
+36,P0036,Pinecrest Water 309,Beverages,Water,Pinecrest,3.44,4.57,0.2473
+37,P0037,Vantage Detergents 829,Home Care,Detergents,Vantage,12.16,17.63,0.3103
+38,P0038,Fairmont Pasta & Rice 897,Packaged Food,Pasta & Rice,Fairmont,8.30,13.90,0.4029
+39,P0039,Vantage Cleaners 542,Home Care,Cleaners,Vantage,2.08,2.78,0.2518
+40,P0040,Silverline Juices 833,Beverages,Juices,Silverline,2.93,4.71,0.3779
+41,P0041,Silverline Canned 734,Packaged Food,Canned,Silverline,4.15,6.60,0.3712
+42,P0042,Halcyon Juices 131,Beverages,Juices,Halcyon,2.66,5.03,0.4712
+43,P0043,Pinecrest Milk 891,Dairy,Milk,Pinecrest,6.81,10.83,0.3712
+44,P0044,Greenfield Skin Care 298,Personal Care,Skin Care,Greenfield,2.31,3.15,0.2667
+45,P0045,Vantage Nuts 360,Snacks,Nuts,Vantage,2.24,3.42,0.3450
+46,P0046,Halcyon Yoghurt 883,Dairy,Yoghurt,Halcyon,5.57,9.46,0.4112
+47,P0047,Pinecrest Butter 767,Dairy,Butter,Pinecrest,8.48,12.32,0.3117
+48,P0048,Pinecrest Chocolate 421,Snacks,Chocolate,Pinecrest,1.98,3.44,0.4244
+49,P0049,Pinecrest Milk 397,Dairy,Milk,Pinecrest,6.05,10.55,0.4265
+50,P0050,Silverline Juices 210,Beverages,Juices,Silverline,0.86,1.24,0.3065
+51,P0051,Vantage Canned 739,Packaged Food,Canned,Vantage,11.40,15.19,0.2495
+52,P0052,Marlow Nuts 920,Snacks,Nuts,Marlow,4.17,5.95,0.2992
+53,P0053,Aurora Juices 947,Beverages,Juices,Aurora,4.92,7.26,0.3223
+54,P0054,Vantage Soft Drinks 588,Beverages,Soft Drinks,Vantage,4.47,6.75,0.3378
+55,P0055,Solera Juices 619,Beverages,Juices,Solera,5.24,8.99,0.4171
+56,P0056,Northwind Paper Goods 247,Home Care,Paper Goods,Northwind,7.13,12.86,0.4456
+57,P0057,Northwind Oral Care 553,Personal Care,Oral Care,Northwind,6.96,11.95,0.4176
+58,P0058,Northwind Soft Drinks 985,Beverages,Soft Drinks,Northwind,1.05,1.78,0.4101
+59,P0059,Kestrel Air Care 142,Home Care,Air Care,Kestrel,12.74,18.52,0.3121
+60,P0060,Northwind Coffee & Tea 707,Beverages,Coffee & Tea,Northwind,3.28,5.50,0.4036
+61,P0061,Marlow Canned 168,Packaged Food,Canned,Marlow,5.55,8.55,0.3509
+62,P0062,Aurora Chocolate 859,Snacks,Chocolate,Aurora,8.61,11.68,0.2628
+63,P0063,Kestrel Biscuits 874,Snacks,Biscuits,Kestrel,5.43,8.34,0.3489
+64,P0064,Aurora Skin Care 959,Personal Care,Skin Care,Aurora,14.63,20.14,0.2736
+65,P0065,Greenfield Nuts 640,Snacks,Nuts,Greenfield,0.84,1.21,0.3058
+66,P0066,Vantage Breakfast 972,Packaged Food,Breakfast,Vantage,3.28,6.07,0.4596
+67,P0067,Solera Biscuits 595,Snacks,Biscuits,Solera,3.15,4.89,0.3558
+68,P0068,Vantage Coffee & Tea 562,Beverages,Coffee & Tea,Vantage,1.35,2.56,0.4727
+69,P0069,Kestrel Chocolate 809,Snacks,Chocolate,Kestrel,5.63,10.58,0.4679
+70,P0070,Halcyon Soft Drinks 573,Beverages,Soft Drinks,Halcyon,1.11,1.49,0.2550
+71,P0071,Pinecrest Oral Care 678,Personal Care,Oral Care,Pinecrest,16.13,26.13,0.3827
+72,P0072,Solera Butter 352,Dairy,Butter,Solera,9.11,12.07,0.2452
+73,P0073,Halcyon Nuts 117,Snacks,Nuts,Halcyon,4.52,6.86,0.3411
+74,P0074,Halcyon Coffee & Tea 732,Beverages,Coffee & Tea,Halcyon,2.54,3.61,0.2964
+75,P0075,Marlow Detergents 806,Home Care,Detergents,Marlow,5.37,7.95,0.3245
+76,P0076,Northwind Yoghurt 174,Dairy,Yoghurt,Northwind,6.14,9.05,0.3215
+77,P0077,Greenfield Juices 649,Beverages,Juices,Greenfield,6.20,8.81,0.2963
+78,P0078,Pinecrest Nuts 914,Snacks,Nuts,Pinecrest,5.46,9.16,0.4039
+79,P0079,Pinecrest Sauces 491,Packaged Food,Sauces,Pinecrest,3.86,5.36,0.2799
+80,P0080,Kestrel Soft Drinks 840,Beverages,Soft Drinks,Kestrel,5.40,7.69,0.2978
+81,P0081,Northwind Chocolate 128,Snacks,Chocolate,Northwind,1.83,3.32,0.4488
+82,P0082,Halcyon Paper Goods 837,Home Care,Paper Goods,Halcyon,10.22,13.49,0.2424
+83,P0083,Aurora Pasta & Rice 276,Packaged Food,Pasta & Rice,Aurora,5.04,7.74,0.3488
+84,P0084,Greenfield Ice Cream 530,Frozen,Ice Cream,Greenfield,9.31,15.91,0.4148
+85,P0085,Marlow Coffee & Tea 571,Beverages,Coffee & Tea,Marlow,5.66,7.99,0.2916
+86,P0086,Greenfield Skin Care 446,Personal Care,Skin Care,Greenfield,13.29,17.32,0.2327
+87,P0087,Vantage Cheese 753,Dairy,Cheese,Vantage,9.53,12.81,0.2560
+88,P0088,Kestrel Bath 382,Personal Care,Bath,Kestrel,8.28,12.62,0.3439
+89,P0089,Northwind Water 222,Beverages,Water,Northwind,3.95,5.22,0.2433
+90,P0090,Aurora Air Care 451,Home Care,Air Care,Aurora,2.77,4.39,0.3690
+91,P0091,Pinecrest Butter 465,Dairy,Butter,Pinecrest,6.82,11.34,0.3986
+92,P0092,Greenfield Coffee & Tea 450,Beverages,Coffee & Tea,Greenfield,2.60,4.60,0.4348
+93,P0093,Silverline Air Care 262,Home Care,Air Care,Silverline,3.37,4.75,0.2905
+94,P0094,Vantage Bath 420,Personal Care,Bath,Vantage,2.06,3.08,0.3312
+95,P0095,Solera Ice Cream 865,Frozen,Ice Cream,Solera,1.92,3.08,0.3766
+96,P0096,Pinecrest Paper Goods 542,Home Care,Paper Goods,Pinecrest,11.07,16.56,0.3315
+97,P0097,Pinecrest Nuts 764,Snacks,Nuts,Pinecrest,5.76,7.80,0.2615
+98,P0098,Northwind Cleaners 284,Home Care,Cleaners,Northwind,10.00,15.46,0.3532
+99,P0099,Pinecrest Breakfast 769,Packaged Food,Breakfast,Pinecrest,5.16,6.64,0.2229
+100,P0100,Marlow Chips 258,Snacks,Chips,Marlow,0.92,1.22,0.2459
+101,P0101,Halcyon Air Care 914,Home Care,Air Care,Halcyon,7.59,11.82,0.3579
+102,P0102,Pinecrest Chips 188,Snacks,Chips,Pinecrest,5.70,8.05,0.2919
+103,P0103,Kestrel Chocolate 671,Snacks,Chocolate,Kestrel,1.35,2.33,0.4206
+104,P0104,Kestrel Skin Care 500,Personal Care,Skin Care,Kestrel,17.36,27.06,0.3585
+105,P0105,Marlow Frozen Veg 298,Frozen,Frozen Veg,Marlow,9.75,13.99,0.3031
+106,P0106,Kestrel Water 624,Beverages,Water,Kestrel,3.48,4.87,0.2854
+107,P0107,Solera Air Care 391,Home Care,Air Care,Solera,1.86,2.94,0.3673
+108,P0108,Solera Skin Care 102,Personal Care,Skin Care,Solera,13.17,20.69,0.3635
+109,P0109,Fairmont Canned 522,Packaged Food,Canned,Fairmont,6.61,9.26,0.2862
+110,P0110,Northwind Skin Care 280,Personal Care,Skin Care,Northwind,2.41,3.84,0.3724
+111,P0111,Silverline Pasta & Rice 556,Packaged Food,Pasta & Rice,Silverline,11.35,15.49,0.2673
+112,P0112,Marlow Skin Care 410,Personal Care,Skin Care,Marlow,5.89,10.63,0.4459
+113,P0113,Pinecrest Ice Cream 408,Frozen,Ice Cream,Pinecrest,9.06,14.69,0.3833
+114,P0114,Solera Skin Care 714,Personal Care,Skin Care,Solera,1.84,2.45,0.2490
+115,P0115,Aurora Bath 240,Personal Care,Bath,Aurora,4.73,7.18,0.3412
+116,P0116,Solera Detergents 239,Home Care,Detergents,Solera,8.71,12.54,0.3054
+117,P0117,Kestrel Oral Care 654,Personal Care,Oral Care,Kestrel,2.04,2.75,0.2582
+118,P0118,Halcyon Oral Care 748,Personal Care,Oral Care,Halcyon,7.23,9.82,0.2637
+119,P0119,Aurora Soft Drinks 841,Beverages,Soft Drinks,Aurora,3.02,4.60,0.3435
+120,P0120,Fairmont Milk 664,Dairy,Milk,Fairmont,7.42,9.52,0.2206
+121,P0121,Fairmont Cheese 156,Dairy,Cheese,Fairmont,3.12,4.13,0.2446
+122,P0122,Pinecrest Pasta & Rice 562,Packaged Food,Pasta & Rice,Pinecrest,7.72,10.71,0.2792
+123,P0123,Blue Harbour Nuts 654,Snacks,Nuts,Blue Harbour,6.50,11.58,0.4387
+124,P0124,Greenfield Butter 555,Dairy,Butter,Greenfield,6.33,10.07,0.3714
+125,P0125,Vantage Chocolate 647,Snacks,Chocolate,Vantage,9.04,11.62,0.2220
+126,P0126,Aurora Frozen Meals 493,Frozen,Frozen Meals,Aurora,7.65,14.15,0.4594
+127,P0127,Silverline Breakfast 144,Packaged Food,Breakfast,Silverline,8.12,15.05,0.4605
+128,P0128,Marlow Yoghurt 798,Dairy,Yoghurt,Marlow,4.42,6.99,0.3677
+129,P0129,Northwind Juices 276,Beverages,Juices,Northwind,5.72,8.69,0.3418
+130,P0130,Solera Sauces 738,Packaged Food,Sauces,Solera,9.21,12.88,0.2849
+131,P0131,Solera Soft Drinks 833,Beverages,Soft Drinks,Solera,1.47,2.15,0.3163
+132,P0132,Solera Cleaners 959,Home Care,Cleaners,Solera,8.38,12.67,0.3386
+133,P0133,Vantage Nuts 943,Snacks,Nuts,Vantage,4.33,8.16,0.4694
+134,P0134,Kestrel Chocolate 758,Snacks,Chocolate,Kestrel,1.63,2.85,0.4281
+135,P0135,Vantage Milk 795,Dairy,Milk,Vantage,1.02,1.35,0.2444
+136,P0136,Kestrel Oral Care 628,Personal Care,Oral Care,Kestrel,15.25,27.54,0.4463
+137,P0137,Aurora Skin Care 899,Personal Care,Skin Care,Aurora,2.02,2.91,0.3058
+138,P0138,Blue Harbour Frozen Meals 609,Frozen,Frozen Meals,Blue Harbour,5.74,9.08,0.3678
+139,P0139,Solera Coffee & Tea 318,Beverages,Coffee & Tea,Solera,1.78,2.45,0.2735
+140,P0140,Vantage Pasta & Rice 766,Packaged Food,Pasta & Rice,Vantage,7.39,13.40,0.4485
+141,P0141,Fairmont Breakfast 696,Packaged Food,Breakfast,Fairmont,7.56,11.26,0.3286
+142,P0142,Greenfield Juices 579,Beverages,Juices,Greenfield,2.83,3.80,0.2553
+143,P0143,Vantage Juices 797,Beverages,Juices,Vantage,3.18,4.51,0.2949
+144,P0144,Fairmont Cheese 514,Dairy,Cheese,Fairmont,2.04,2.67,0.2360
+145,P0145,Marlow Coffee & Tea 451,Beverages,Coffee & Tea,Marlow,5.76,8.33,0.3085
+146,P0146,Vantage Biscuits 364,Snacks,Biscuits,Vantage,1.42,1.85,0.2324
+147,P0147,Halcyon Detergents 119,Home Care,Detergents,Halcyon,6.64,12.25,0.4580
+148,P0148,Blue Harbour Coffee & Tea 200,Beverages,Coffee & Tea,Blue Harbour,3.61,5.61,0.3565
+149,P0149,Solera Paper Goods 443,Home Care,Paper Goods,Solera,2.60,3.52,0.2614
+150,P0150,Solera Pasta & Rice 316,Packaged Food,Pasta & Rice,Solera,10.94,14.93,0.2672
+151,P0151,Greenfield Yoghurt 232,Dairy,Yoghurt,Greenfield,6.40,10.06,0.3638
+152,P0152,Silverline Cleaners 171,Home Care,Cleaners,Silverline,4.89,7.55,0.3523
+153,P0153,Solera Cheese 463,Dairy,Cheese,Solera,1.39,1.95,0.2872
+154,P0154,Silverline Butter 254,Dairy,Butter,Silverline,2.61,4.81,0.4574
+155,P0155,Kestrel Paper Goods 675,Home Care,Paper Goods,Kestrel,3.16,4.14,0.2367
+156,P0156,Vantage Hair Care 260,Personal Care,Hair Care,Vantage,12.27,16.37,0.2505
+157,P0157,Blue Harbour Detergents 532,Home Care,Detergents,Blue Harbour,12.50,19.25,0.3506
+158,P0158,Solera Soft Drinks 887,Beverages,Soft Drinks,Solera,1.99,2.98,0.3322
+159,P0159,Silverline Detergents 352,Home Care,Detergents,Silverline,4.70,6.78,0.3068
+160,P0160,Solera Milk 792,Dairy,Milk,Solera,2.28,4.20,0.4571
+161,P0161,Silverline Soft Drinks 298,Beverages,Soft Drinks,Silverline,1.64,2.94,0.4422
+162,P0162,Blue Harbour Sauces 754,Packaged Food,Sauces,Blue Harbour,3.89,5.73,0.3211
+163,P0163,Fairmont Milk 735,Dairy,Milk,Fairmont,3.62,5.80,0.3759
+164,P0164,Solera Breakfast 588,Packaged Food,Breakfast,Solera,4.14,7.80,0.4692
+165,P0165,Silverline Skin Care 300,Personal Care,Skin Care,Silverline,4.11,5.37,0.2346
+166,P0166,Halcyon Cleaners 170,Home Care,Cleaners,Halcyon,5.50,9.65,0.4301
+167,P0167,Blue Harbour Biscuits 918,Snacks,Biscuits,Blue Harbour,1.12,1.83,0.3880
+168,P0168,Aurora Breakfast 510,Packaged Food,Breakfast,Aurora,5.46,8.76,0.3767
+169,P0169,Greenfield Water 169,Beverages,Water,Greenfield,3.58,5.49,0.3479
+170,P0170,Fairmont Water 502,Beverages,Water,Fairmont,2.29,3.50,0.3457
+171,P0171,Marlow Milk 826,Dairy,Milk,Marlow,5.66,9.59,0.4098
+172,P0172,Aurora Juices 547,Beverages,Juices,Aurora,2.79,3.70,0.2459
+173,P0173,Blue Harbour Detergents 871,Home Care,Detergents,Blue Harbour,10.48,13.73,0.2367
+174,P0174,Pinecrest Juices 405,Beverages,Juices,Pinecrest,3.37,5.18,0.3494
+175,P0175,Marlow Chips 373,Snacks,Chips,Marlow,3.03,4.35,0.3034
+176,P0176,Aurora Soft Drinks 723,Beverages,Soft Drinks,Aurora,1.97,2.79,0.2939
+177,P0177,Silverline Soft Drinks 747,Beverages,Soft Drinks,Silverline,3.51,6.30,0.4429
+178,P0178,Marlow Yoghurt 480,Dairy,Yoghurt,Marlow,3.46,5.64,0.3865
+179,P0179,Northwind Pasta & Rice 973,Packaged Food,Pasta & Rice,Northwind,10.44,15.59,0.3303
+180,P0180,Kestrel Milk 491,Dairy,Milk,Kestrel,3.86,6.68,0.4222
+181,P0181,Northwind Chocolate 820,Snacks,Chocolate,Northwind,0.67,1.16,0.4224
+182,P0182,Vantage Skin Care 254,Personal Care,Skin Care,Vantage,10.47,16.13,0.3509
+183,P0183,Marlow Hair Care 499,Personal Care,Hair Care,Marlow,5.37,9.12,0.4112
+184,P0184,Blue Harbour Hair Care 390,Personal Care,Hair Care,Blue Harbour,12.83,18.53,0.3076
+185,P0185,Halcyon Chocolate 539,Snacks,Chocolate,Halcyon,2.27,3.75,0.3947
+186,P0186,Marlow Soft Drinks 860,Beverages,Soft Drinks,Marlow,1.66,2.82,0.4113
+187,P0187,Vantage Sauces 568,Packaged Food,Sauces,Vantage,3.98,5.16,0.2287
+188,P0188,Aurora Coffee & Tea 627,Beverages,Coffee & Tea,Aurora,6.14,9.15,0.3290
+189,P0189,Blue Harbour Breakfast 209,Packaged Food,Breakfast,Blue Harbour,3.64,4.71,0.2272
+190,P0190,Solera Chocolate 249,Snacks,Chocolate,Solera,6.38,11.71,0.4552
+191,P0191,Aurora Water 708,Beverages,Water,Aurora,2.24,4.09,0.4523
+192,P0192,Solera Oral Care 362,Personal Care,Oral Care,Solera,8.47,16.10,0.4739
+193,P0193,Pinecrest Breakfast 236,Packaged Food,Breakfast,Pinecrest,7.02,9.35,0.2492
+194,P0194,Greenfield Bath 970,Personal Care,Bath,Greenfield,1.70,2.78,0.3885
+195,P0195,Halcyon Butter 631,Dairy,Butter,Halcyon,3.33,4.77,0.3019
+196,P0196,Solera Nuts 795,Snacks,Nuts,Solera,2.97,4.37,0.3204
+197,P0197,Northwind Skin Care 689,Personal Care,Skin Care,Northwind,19.25,26.70,0.2790
+198,P0198,Blue Harbour Air Care 982,Home Care,Air Care,Blue Harbour,7.58,11.62,0.3477
+199,P0199,Silverline Pasta & Rice 970,Packaged Food,Pasta & Rice,Silverline,1.59,2.63,0.3954
+200,P0200,Halcyon Yoghurt 712,Dairy,Yoghurt,Halcyon,8.90,12.55,0.2908
+201,P0201,Pinecrest Hair Care 394,Personal Care,Hair Care,Pinecrest,5.97,9.81,0.3914
+202,P0202,Northwind Yoghurt 180,Dairy,Yoghurt,Northwind,5.44,7.60,0.2842
+203,P0203,Pinecrest Coffee & Tea 269,Beverages,Coffee & Tea,Pinecrest,5.61,7.38,0.2398
+204,P0204,Silverline Water 936,Beverages,Water,Silverline,7.18,9.33,0.2304
+205,P0205,Solera Frozen Veg 844,Frozen,Frozen Veg,Solera,10.95,15.75,0.3048
+206,P0206,Halcyon Hair Care 486,Personal Care,Hair Care,Halcyon,15.60,27.60,0.4348
+207,P0207,Solera Cleaners 555,Home Care,Cleaners,Solera,9.77,13.53,0.2779
+208,P0208,Solera Biscuits 782,Snacks,Biscuits,Solera,4.67,8.75,0.4663
+209,P0209,Solera Biscuits 250,Snacks,Biscuits,Solera,0.76,1.41,0.4610
+210,P0210,Pinecrest Canned 519,Packaged Food,Canned,Pinecrest,7.04,11.61,0.3936
+211,P0211,Aurora Frozen Meals 880,Frozen,Frozen Meals,Aurora,7.12,13.01,0.4527
+212,P0212,Halcyon Juices 743,Beverages,Juices,Halcyon,3.27,4.62,0.2922
+213,P0213,Kestrel Detergents 973,Home Care,Detergents,Kestrel,1.41,2.12,0.3349
+214,P0214,Blue Harbour Skin Care 226,Personal Care,Skin Care,Blue Harbour,4.64,6.21,0.2528
+215,P0215,Silverline Cheese 906,Dairy,Cheese,Silverline,6.29,8.92,0.2948
+216,P0216,Fairmont Ice Cream 652,Frozen,Ice Cream,Fairmont,9.21,14.97,0.3848
+217,P0217,Aurora Soft Drinks 582,Beverages,Soft Drinks,Aurora,5.23,9.22,0.4328
+218,P0218,Aurora Ice Cream 830,Frozen,Ice Cream,Aurora,4.62,6.89,0.3295
+219,P0219,Northwind Milk 669,Dairy,Milk,Northwind,1.44,2.40,0.4000
+220,P0220,Solera Skin Care 745,Personal Care,Skin Care,Solera,7.07,9.56,0.2605
+-1,UNKNOWN,Unknown Product,Unknown,Unknown,Unknown,,,

@@ -1,0 +1,47 @@
+{
+  "exported": [
+    {
+      "table": "dim_date",
+      "rows": 182,
+      "columns": 13,
+      "file": "powerbi/data/dim_date.csv"
+    },
+    {
+      "table": "dim_product",
+      "rows": 221,
+      "columns": 9,
+      "file": "powerbi/data/dim_product.csv"
+    },
+    {
+      "table": "dim_store",
+      "rows": 29,
+      "columns": 8,
+      "file": "powerbi/data/dim_store.csv"
+    },
+    {
+      "table": "dim_campaign",
+      "rows": 38,
+      "columns": 9,
+      "file": "powerbi/data/dim_campaign.csv"
+    },
+    {
+      "table": "fact_sales",
+      "rows": 130023,
+      "columns": 18,
+      "file": "powerbi/data/fact_sales.csv"
+    },
+    {
+      "table": "fact_inventory_snapshot",
+      "rows": 74800,
+      "columns": 9,
+      "file": "powerbi/data/fact_inventory_snapshot.csv"
+    },
+    {
+      "table": "mart_campaign_roi",
+      "rows": 36,
+      "columns": 28,
+      "file": "powerbi/data/mart_campaign_roi.csv"
+    }
+  ],
+  "export_dir": "powerbi/data"
+}

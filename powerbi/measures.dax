@@ -1,0 +1,246 @@
+// ===========================================================================
+// RetailIntel — DAX measures
+// ===========================================================================
+// Paste each measure into Power BI Desktop (Modeling ▸ New measure).
+// Put them all in a dedicated "_Measures" table so they group together in the
+// field list instead of hiding inside whichever table you happened to click.
+//
+// Formatting note: set the format string on each measure (Measure tools ▸
+// Format). Currency measures → Currency, 0 decimals. Percentage measures →
+// Percentage, 1 decimal. ROI measures → Decimal, 2 places (an ROI of 0.42 means
+// +42%, and showing it as a percentage invites confusion with margin).
+// ===========================================================================
+
+
+// ---------------------------------------------------------------------------
+// SALES — core measures over FactSales
+// ---------------------------------------------------------------------------
+
+Total Revenue =
+SUM ( fact_sales[net_revenue] )
+
+Units Sold =
+SUM ( fact_sales[quantity] )
+
+Transactions =
+DISTINCTCOUNT ( fact_sales[transaction_id] )
+
+Total COGS =
+SUM ( fact_sales[cogs] )
+
+Gross Profit =
+SUM ( fact_sales[gross_profit] )
+
+Gross Margin % =
+DIVIDE ( [Gross Profit], [Total Revenue] )
+
+Average Basket Value =
+DIVIDE ( [Total Revenue], [Transactions] )
+
+Units per Transaction =
+DIVIDE ( [Units Sold], [Transactions] )
+
+Total Discount =
+SUM ( fact_sales[discount_amount] )
+
+Gross Sales =
+SUM ( fact_sales[gross_amount] )
+
+// Discount as a share of what the items would have sold for at full price.
+Discount Rate % =
+DIVIDE ( [Total Discount], [Gross Sales] )
+
+
+// ---------------------------------------------------------------------------
+// PROMOTION SPLIT
+// ---------------------------------------------------------------------------
+// is_promoted is precomputed on the fact (campaign_key > 0), so this is a
+// simple filter rather than a join back to the campaign dimension.
+
+Promoted Revenue =
+CALCULATE ( [Total Revenue], fact_sales[is_promoted] = TRUE () )
+
+Non-Promoted Revenue =
+CALCULATE ( [Total Revenue], fact_sales[is_promoted] = FALSE () )
+
+Promoted Revenue % =
+DIVIDE ( [Promoted Revenue], [Total Revenue] )
+
+Promoted Units =
+CALCULATE ( [Units Sold], fact_sales[is_promoted] = TRUE () )
+
+
+// ---------------------------------------------------------------------------
+// CAMPAIGN ROI — reads the precomputed mart, not FactSales
+// ---------------------------------------------------------------------------
+// The baseline window sits outside the report's filter context, so it is
+// computed once in Spark (src/gold/kpis.py). These measures only aggregate it.
+
+Campaign Cost =
+SUM ( mart_campaign_roi[campaign_cost] )
+
+Campaign Revenue =
+SUM ( mart_campaign_roi[campaign_revenue] )
+
+Incremental Revenue =
+SUM ( mart_campaign_roi[incremental_revenue] )
+
+Incremental Units =
+SUM ( mart_campaign_roi[incremental_units] )
+
+Incremental Gross Profit =
+SUM ( mart_campaign_roi[incremental_gross_profit] )
+
+// Portfolio ROI — recomputed from the summed components rather than averaging
+// the per-campaign ROI column. Averaging ratios weights a tiny campaign the
+// same as a large one and gives a number that does not reconcile to the totals.
+Portfolio ROI =
+DIVIDE ( [Incremental Revenue] - [Campaign Cost], [Campaign Cost] )
+
+// Margin-based ROI: the honest commercial read, because it charges the
+// promotion for the margin given away in the discount.
+Portfolio ROI (Margin) =
+DIVIDE ( [Incremental Gross Profit] - [Campaign Cost], [Campaign Cost] )
+
+Average Campaign ROI =
+AVERAGE ( mart_campaign_roi[roi] )
+
+Campaign Count =
+COUNTROWS ( mart_campaign_roi )
+
+Profitable Campaigns =
+COUNTROWS ( FILTER ( mart_campaign_roi, mart_campaign_roi[roi] > 0 ) )
+
+Profitable Campaign % =
+DIVIDE ( [Profitable Campaigns], [Campaign Count] )
+
+Campaign Uplift % =
+DIVIDE ( [Incremental Revenue], SUM ( mart_campaign_roi[expected_baseline_revenue] ) )
+
+
+// ---------------------------------------------------------------------------
+// INVENTORY — stock is SEMI-ADDITIVE
+// ---------------------------------------------------------------------------
+// Stock may be summed across products and stores but NEVER across dates: the
+// same physical units appear in every weekly snapshot, so summing four weeks of
+// 1,000 units would claim 4,000 units that never existed. Every measure below
+// therefore sums within a date and averages across dates.
+//
+// VALUES() is taken over the fact's own snapshot_date rather than dim_date
+// because inventory is captured weekly while dim_date holds every calendar day
+// — averaging across all days would divide by ~7× too many periods.
+
+Avg Inventory Units =
+AVERAGEX (
+    VALUES ( fact_inventory_snapshot[snapshot_date] ),
+    CALCULATE ( SUM ( fact_inventory_snapshot[stock_quantity] ) )
+)
+
+Avg Inventory Value =
+AVERAGEX (
+    VALUES ( fact_inventory_snapshot[snapshot_date] ),
+    CALCULATE ( SUM ( fact_inventory_snapshot[stock_value_at_cost] ) )
+)
+
+Closing Stock Units =
+CALCULATE (
+    SUM ( fact_inventory_snapshot[stock_quantity] ),
+    LASTNONBLANK ( fact_inventory_snapshot[snapshot_date], 1 )
+)
+
+// Inventory turnover = COGS ÷ average inventory, BOTH valued at cost.
+// Mixing retail-valued stock with cost-valued COGS would understate turns.
+Inventory Turnover =
+DIVIDE ( [Total COGS], [Avg Inventory Value] )
+
+// How many days of selling the current average stock covers, for the period
+// currently in filter context.
+Days of Supply =
+VAR DaysInContext = COUNTROWS ( VALUES ( dim_date[date] ) )
+RETURN
+    DIVIDE ( DaysInContext, [Inventory Turnover] )
+
+// A SKU/store combination is flagged low when its latest snapshot is under one
+// week of its own average demand.
+Low Stock SKU Count =
+VAR WeeklyDemand = DIVIDE ( [Units Sold], 17 )   // 17 weekly snapshots in period
+RETURN
+    COUNTROWS (
+        FILTER (
+            SUMMARIZE (
+                fact_inventory_snapshot,
+                dim_product[product_id],
+                dim_store[store_id],
+                "Stock", [Closing Stock Units]
+            ),
+            [Stock] < WeeklyDemand
+        )
+    )
+
+Out of Stock Count =
+COUNTROWS (
+    FILTER (
+        SUMMARIZE (
+            fact_inventory_snapshot,
+            dim_product[product_id],
+            dim_store[store_id],
+            "Stock", [Closing Stock Units]
+        ),
+        [Stock] = 0
+    )
+)
+
+
+// ---------------------------------------------------------------------------
+// TIME INTELLIGENCE
+// ---------------------------------------------------------------------------
+// Requires dim_date to be marked as a date table (Table tools ▸ Mark as date
+// table ▸ dim_date[date]). Without that, DATEADD silently returns wrong results
+// rather than erroring.
+
+Revenue Prior Month =
+CALCULATE ( [Total Revenue], DATEADD ( dim_date[date], -1, MONTH ) )
+
+Revenue MoM % =
+DIVIDE ( [Total Revenue] - [Revenue Prior Month], [Revenue Prior Month] )
+
+Revenue YTD =
+TOTALYTD ( [Total Revenue], dim_date[date] )
+
+Revenue Rolling 7 Days =
+CALCULATE (
+    [Total Revenue],
+    DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -7, DAY )
+)
+
+
+// ---------------------------------------------------------------------------
+// STORE PERFORMANCE
+// ---------------------------------------------------------------------------
+
+Store Rank by Revenue =
+RANKX ( ALLSELECTED ( dim_store[store_name] ), [Total Revenue],, DESC, DENSE )
+
+Revenue per Store =
+DIVIDE ( [Total Revenue], DISTINCTCOUNT ( dim_store[store_key] ) )
+
+// Share of the total currently on screen, so it responds to slicers rather
+// than always dividing by the grand total of the whole dataset.
+Revenue % of Total =
+DIVIDE ( [Total Revenue], CALCULATE ( [Total Revenue], ALLSELECTED ( dim_store ) ) )
+
+
+// ---------------------------------------------------------------------------
+// DATA QUALITY — visible in the report on purpose
+// ---------------------------------------------------------------------------
+// Surfacing attribution quality on the dashboard is what stops a reader
+// silently trusting a campaign number that is partly built on unknowns.
+
+Unattributed Campaign Rows =
+CALCULATE ( COUNTROWS ( fact_sales ), fact_sales[campaign_resolved] = FALSE () )
+
+Campaign Attribution % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( fact_sales ), fact_sales[campaign_resolved] = TRUE () ),
+    COUNTROWS ( fact_sales )
+)

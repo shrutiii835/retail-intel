@@ -1,0 +1,39 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+dist/
+build/
+*.egg-info/
+
+# Portal screenshots — may contain subscription/tenant ids or your account name.
+# Keep them locally; never commit images of the Azure portal.
+# screenshots/
+# *.png
+# *.jpg
+
+# Data — regenerate with `make data` (src/data_generation/generate_data.py)
+data/raw/
+data/landing/
+lakehouse/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Secrets — NEVER commit
+.env
+*.env
+local.settings.json
+*.pem
+*.key
+azure_credentials*
+config/secrets*.json
+
+# OS
+.DS_Store
+
+# Power BI temp
+*.pbix.tmp
+~$*

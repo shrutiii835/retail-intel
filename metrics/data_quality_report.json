@@ -1,0 +1,356 @@
+{
+  "curated_consistency": {
+    "definition": "Share of rows in the curated (Gold) layer that pass every post-load assertion: unique primary key, all foreign keys resolvable to a real (non-Unknown) dimension member, and all measures inside their declared domain.",
+    "curated_rows_evaluated": 204823,
+    "defect_rows": 198,
+    "consistency_pct": 99.9033,
+    "meets_99_pct_claim": true
+  },
+  "source_data_quality": {
+    "note": "Reported separately from consistency. Rejected rows are the pipeline working correctly, not a defect in curated data.",
+    "bronze_sales_rows_ingested": 135375,
+    "silver_sales_rows_read": 135375,
+    "rows_rejected_to_quarantine": 2002,
+    "rejection_rate_pct": 1.4789,
+    "duplicate_rows_collapsed": 2945,
+    "rows_inserted": 130023,
+    "rows_updated_by_merge": 405
+  },
+  "fact_sales_assertions": [
+    {
+      "assertion": "FS_A01_no_null_foreign_keys",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A02_product_key_resolves",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A03_store_key_resolves",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A04_campaign_key_resolves",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A05_date_key_resolves",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A06_no_unknown_product",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A07_no_unknown_store",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A08_no_unknown_campaign",
+      "rows_evaluated": 130023,
+      "rows_failed": 198,
+      "passed": false
+    },
+    {
+      "assertion": "FS_A09_quantity_positive",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A10_unit_price_non_negative",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A11_discount_non_negative",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A12_revenue_not_null",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A13_revenue_arithmetic",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A14_date_not_null",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FS_A15_transaction_id_unique",
+      "rows_evaluated": 130023,
+      "rows_failed": 0,
+      "passed": true
+    }
+  ],
+  "fact_inventory_assertions": [
+    {
+      "assertion": "FI_A01_no_null_foreign_keys",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FI_A02_no_unknown_product",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FI_A03_no_unknown_store",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FI_A04_stock_non_negative",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FI_A05_stock_value_non_negative",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    },
+    {
+      "assertion": "FI_A06_grain_unique",
+      "rows_evaluated": 74800,
+      "rows_failed": 0,
+      "passed": true
+    }
+  ],
+  "silver_to_gold_reconciliation": [
+    {
+      "check": "sales_row_count",
+      "silver": 130023,
+      "gold": 130023,
+      "variance": 0,
+      "passed": true
+    },
+    {
+      "check": "sales_net_revenue",
+      "silver": 1957583.32,
+      "gold": 1957583.32,
+      "variance": 0.0,
+      "passed": true
+    },
+    {
+      "check": "inventory_row_count",
+      "silver": 74800,
+      "gold": 74800,
+      "variance": 0,
+      "passed": true
+    }
+  ],
+  "detection_recall_vs_injected_ground_truth": [
+    {
+      "defect_type": "null_product_id",
+      "expected_rule": "SAL_002",
+      "injected": 264,
+      "detected": 264,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "null_store_id",
+      "expected_rule": "SAL_003",
+      "injected": 198,
+      "detected": 198,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "null_timestamp",
+      "expected_rule": "SAL_004",
+      "injected": 132,
+      "detected": 132,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "invalid_quantity",
+      "expected_rule": "SAL_006",
+      "injected": 462,
+      "detected": 462,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "invalid_unit_price",
+      "expected_rule": "SAL_008",
+      "injected": 330,
+      "detected": 330,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "orphan_product_id",
+      "expected_rule": "SAL_012",
+      "injected": 264,
+      "detected": 264,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "orphan_store_id",
+      "expected_rule": "SAL_013",
+      "injected": 198,
+      "detected": 198,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "type_inconsistency_unrecoverable",
+      "expected_rule": "SAL_005",
+      "injected": 132,
+      "detected": 132,
+      "recall_pct": 100.0
+    },
+    {
+      "defect_type": "type_inconsistency_recoverable",
+      "expected_rule": "SAL_005 (repair via try_cast \u2192 whole number)",
+      "injected": 132,
+      "detected": 131,
+      "recall_pct": 99.24,
+      "note": "Correct outcome is REPAIR, not rejection: '3.0' is a formatting artefact carrying a valid quantity. 'detected' counts rows that reached Gold with a valid quantity."
+    },
+    {
+      "defect_type": "orphan_campaign_id",
+      "expected_rule": "SAL_014 (repair \u2192 Unknown member)",
+      "injected": 198,
+      "detected": 198,
+      "reached_gold": 198,
+      "recall_pct": 100.0,
+      "note": "Repaired rather than rejected: the sale is real, only its campaign attribution is unknown."
+    }
+  ],
+  "dq_rule_results_sales": [
+    {
+      "rule_id": "SAL_001",
+      "rule_description": "transaction_id must be present",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 0
+    },
+    {
+      "rule_id": "SAL_002",
+      "rule_description": "product_id must be present",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 267
+    },
+    {
+      "rule_id": "SAL_003",
+      "rule_description": "store_id must be present",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 201
+    },
+    {
+      "rule_id": "SAL_004",
+      "rule_description": "transaction_timestamp must parse to a timestamp",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 132
+    },
+    {
+      "rule_id": "SAL_005",
+      "rule_description": "quantity must parse to a whole number",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 132
+    },
+    {
+      "rule_id": "SAL_006",
+      "rule_description": "quantity must be greater than zero",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 462
+    },
+    {
+      "rule_id": "SAL_007",
+      "rule_description": "unit_price must parse to a number",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 0
+    },
+    {
+      "rule_id": "SAL_008",
+      "rule_description": "unit_price must not be negative",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 336
+    },
+    {
+      "rule_id": "SAL_009",
+      "rule_description": "discount_amount must not be negative",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 0
+    },
+    {
+      "rule_id": "SAL_010",
+      "rule_description": "discount must not exceed the gross line amount",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 700
+    },
+    {
+      "rule_id": "SAL_011",
+      "rule_description": "transaction date must fall inside the reporting period",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 0
+    },
+    {
+      "rule_id": "SAL_012",
+      "rule_description": "product_id must exist in the product master",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 538
+    },
+    {
+      "rule_id": "SAL_013",
+      "rule_description": "store_id must exist in the store master",
+      "severity": "reject",
+      "rows_evaluated": 135375,
+      "rows_failed": 401
+    },
+    {
+      "rule_id": "SAL_014",
+      "rule_description": "campaign_id must exist in the campaign master when supplied",
+      "severity": "repair",
+      "rows_evaluated": 135375,
+      "rows_failed": 202
+    }
+  ],
+  "row_counts": {
+    "fact_sales": 130023,
+    "fact_inventory_snapshot": 74800
+  },
+  "summary": {
+    "assertions_run": 24,
+    "assertions_passed": 23,
+    "assertions_failed": 1
+  }
+}

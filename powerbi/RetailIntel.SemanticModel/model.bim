@@ -1,0 +1,1013 @@
+{
+  "name": "RetailIntel",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "expressions": [
+      {
+        "name": "DataFolder",
+        "kind": "m",
+        "expression": [
+          "\"C:\\RetailIntel\\data\\\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "dim_date",
+        "columns": [
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key"
+          },
+          {
+            "name": "date",
+            "dataType": "dateTime",
+            "sourceColumn": "date",
+            "isKey": true
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year"
+          },
+          {
+            "name": "quarter",
+            "dataType": "int64",
+            "sourceColumn": "quarter"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month"
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "sourceColumn": "month_name"
+          },
+          {
+            "name": "year_month",
+            "dataType": "int64",
+            "sourceColumn": "year_month"
+          },
+          {
+            "name": "year_month_label",
+            "dataType": "string",
+            "sourceColumn": "year_month_label"
+          },
+          {
+            "name": "day_of_month",
+            "dataType": "int64",
+            "sourceColumn": "day_of_month"
+          },
+          {
+            "name": "day_of_week",
+            "dataType": "int64",
+            "sourceColumn": "day_of_week"
+          },
+          {
+            "name": "day_name",
+            "dataType": "string",
+            "sourceColumn": "day_name"
+          },
+          {
+            "name": "week_of_year",
+            "dataType": "int64",
+            "sourceColumn": "week_of_year"
+          },
+          {
+            "name": "is_weekend",
+            "dataType": "boolean",
+            "sourceColumn": "is_weekend"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_date-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_date.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"date_key\", Int64.Type}, {\"date\", type datetime}, {\"year\", Int64.Type}, {\"quarter\", Int64.Type}, {\"month\", Int64.Type}, {\"month_name\", type text}, {\"year_month\", Int64.Type}, {\"year_month_label\", type text}, {\"day_of_month\", Int64.Type}, {\"day_of_week\", Int64.Type}, {\"day_name\", type text}, {\"week_of_year\", Int64.Type}, {\"is_weekend\", type logical}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "dataCategory": "Time"
+      },
+      {
+        "name": "dim_product",
+        "columns": [
+          {
+            "name": "product_key",
+            "dataType": "int64",
+            "sourceColumn": "product_key"
+          },
+          {
+            "name": "product_id",
+            "dataType": "string",
+            "sourceColumn": "product_id"
+          },
+          {
+            "name": "product_name",
+            "dataType": "string",
+            "sourceColumn": "product_name"
+          },
+          {
+            "name": "category",
+            "dataType": "string",
+            "sourceColumn": "category"
+          },
+          {
+            "name": "sub_category",
+            "dataType": "string",
+            "sourceColumn": "sub_category"
+          },
+          {
+            "name": "brand",
+            "dataType": "string",
+            "sourceColumn": "brand"
+          },
+          {
+            "name": "unit_cost",
+            "dataType": "decimal",
+            "sourceColumn": "unit_cost"
+          },
+          {
+            "name": "list_price",
+            "dataType": "decimal",
+            "sourceColumn": "list_price"
+          },
+          {
+            "name": "gross_margin_pct",
+            "dataType": "double",
+            "sourceColumn": "gross_margin_pct"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_product-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_product.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"product_key\", Int64.Type}, {\"product_id\", type text}, {\"product_name\", type text}, {\"category\", type text}, {\"sub_category\", type text}, {\"brand\", type text}, {\"unit_cost\", type number}, {\"list_price\", type number}, {\"gross_margin_pct\", type number}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_store",
+        "columns": [
+          {
+            "name": "store_key",
+            "dataType": "int64",
+            "sourceColumn": "store_key"
+          },
+          {
+            "name": "store_id",
+            "dataType": "string",
+            "sourceColumn": "store_id"
+          },
+          {
+            "name": "store_name",
+            "dataType": "string",
+            "sourceColumn": "store_name"
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "sourceColumn": "city"
+          },
+          {
+            "name": "state",
+            "dataType": "string",
+            "sourceColumn": "state"
+          },
+          {
+            "name": "region",
+            "dataType": "string",
+            "sourceColumn": "region"
+          },
+          {
+            "name": "store_format",
+            "dataType": "string",
+            "sourceColumn": "store_format"
+          },
+          {
+            "name": "open_date",
+            "dataType": "dateTime",
+            "sourceColumn": "open_date"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_store-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_store.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"store_key\", Int64.Type}, {\"store_id\", type text}, {\"store_name\", type text}, {\"city\", type text}, {\"state\", type text}, {\"region\", type text}, {\"store_format\", type text}, {\"open_date\", type datetime}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_campaign",
+        "columns": [
+          {
+            "name": "campaign_key",
+            "dataType": "int64",
+            "sourceColumn": "campaign_key"
+          },
+          {
+            "name": "campaign_id",
+            "dataType": "string",
+            "sourceColumn": "campaign_id"
+          },
+          {
+            "name": "campaign_name",
+            "dataType": "string",
+            "sourceColumn": "campaign_name"
+          },
+          {
+            "name": "product_id",
+            "dataType": "string",
+            "sourceColumn": "product_id"
+          },
+          {
+            "name": "start_date",
+            "dataType": "dateTime",
+            "sourceColumn": "start_date"
+          },
+          {
+            "name": "end_date",
+            "dataType": "dateTime",
+            "sourceColumn": "end_date"
+          },
+          {
+            "name": "discount_percentage",
+            "dataType": "decimal",
+            "sourceColumn": "discount_percentage"
+          },
+          {
+            "name": "campaign_cost",
+            "dataType": "decimal",
+            "sourceColumn": "campaign_cost"
+          },
+          {
+            "name": "duration_days",
+            "dataType": "int64",
+            "sourceColumn": "duration_days"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_campaign-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_campaign.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"campaign_key\", Int64.Type}, {\"campaign_id\", type text}, {\"campaign_name\", type text}, {\"product_id\", type text}, {\"start_date\", type datetime}, {\"end_date\", type datetime}, {\"discount_percentage\", type number}, {\"campaign_cost\", type number}, {\"duration_days\", Int64.Type}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_sales",
+        "columns": [
+          {
+            "name": "transaction_id",
+            "dataType": "string",
+            "sourceColumn": "transaction_id"
+          },
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key",
+            "isHidden": true
+          },
+          {
+            "name": "product_key",
+            "dataType": "int64",
+            "sourceColumn": "product_key",
+            "isHidden": true
+          },
+          {
+            "name": "store_key",
+            "dataType": "int64",
+            "sourceColumn": "store_key",
+            "isHidden": true
+          },
+          {
+            "name": "campaign_key",
+            "dataType": "int64",
+            "sourceColumn": "campaign_key",
+            "isHidden": true
+          },
+          {
+            "name": "transaction_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "transaction_timestamp"
+          },
+          {
+            "name": "transaction_date",
+            "dataType": "dateTime",
+            "sourceColumn": "transaction_date"
+          },
+          {
+            "name": "year_month",
+            "dataType": "int64",
+            "sourceColumn": "year_month"
+          },
+          {
+            "name": "quantity",
+            "dataType": "int64",
+            "sourceColumn": "quantity"
+          },
+          {
+            "name": "unit_price",
+            "dataType": "decimal",
+            "sourceColumn": "unit_price"
+          },
+          {
+            "name": "gross_amount",
+            "dataType": "decimal",
+            "sourceColumn": "gross_amount"
+          },
+          {
+            "name": "discount_amount",
+            "dataType": "decimal",
+            "sourceColumn": "discount_amount"
+          },
+          {
+            "name": "net_revenue",
+            "dataType": "decimal",
+            "sourceColumn": "net_revenue"
+          },
+          {
+            "name": "cogs",
+            "dataType": "decimal",
+            "sourceColumn": "cogs"
+          },
+          {
+            "name": "gross_profit",
+            "dataType": "decimal",
+            "sourceColumn": "gross_profit"
+          },
+          {
+            "name": "is_promoted",
+            "dataType": "boolean",
+            "sourceColumn": "is_promoted"
+          },
+          {
+            "name": "campaign_resolved",
+            "dataType": "boolean",
+            "sourceColumn": "campaign_resolved"
+          },
+          {
+            "name": "last_modified_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "last_modified_timestamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_sales-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"fact_sales.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"transaction_id\", type text}, {\"date_key\", Int64.Type}, {\"product_key\", Int64.Type}, {\"store_key\", Int64.Type}, {\"campaign_key\", Int64.Type}, {\"transaction_timestamp\", type datetime}, {\"transaction_date\", type datetime}, {\"year_month\", Int64.Type}, {\"quantity\", Int64.Type}, {\"unit_price\", type number}, {\"gross_amount\", type number}, {\"discount_amount\", type number}, {\"net_revenue\", type number}, {\"cogs\", type number}, {\"gross_profit\", type number}, {\"is_promoted\", type logical}, {\"campaign_resolved\", type logical}, {\"last_modified_timestamp\", type datetime}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_inventory_snapshot",
+        "columns": [
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key",
+            "isHidden": true
+          },
+          {
+            "name": "product_key",
+            "dataType": "int64",
+            "sourceColumn": "product_key",
+            "isHidden": true
+          },
+          {
+            "name": "store_key",
+            "dataType": "int64",
+            "sourceColumn": "store_key",
+            "isHidden": true
+          },
+          {
+            "name": "snapshot_date",
+            "dataType": "dateTime",
+            "sourceColumn": "snapshot_date"
+          },
+          {
+            "name": "year_month",
+            "dataType": "int64",
+            "sourceColumn": "year_month"
+          },
+          {
+            "name": "inventory_id",
+            "dataType": "string",
+            "sourceColumn": "inventory_id"
+          },
+          {
+            "name": "stock_quantity",
+            "dataType": "int64",
+            "sourceColumn": "stock_quantity"
+          },
+          {
+            "name": "stock_value_at_cost",
+            "dataType": "decimal",
+            "sourceColumn": "stock_value_at_cost"
+          },
+          {
+            "name": "last_modified_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "last_modified_timestamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_inventory_snapshot-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"fact_inventory_snapshot.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"date_key\", Int64.Type}, {\"product_key\", Int64.Type}, {\"store_key\", Int64.Type}, {\"snapshot_date\", type datetime}, {\"year_month\", Int64.Type}, {\"inventory_id\", type text}, {\"stock_quantity\", Int64.Type}, {\"stock_value_at_cost\", type number}, {\"last_modified_timestamp\", type datetime}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "mart_campaign_roi",
+        "columns": [
+          {
+            "name": "campaign_key",
+            "dataType": "int64",
+            "sourceColumn": "campaign_key"
+          },
+          {
+            "name": "campaign_id",
+            "dataType": "string",
+            "sourceColumn": "campaign_id"
+          },
+          {
+            "name": "campaign_name",
+            "dataType": "string",
+            "sourceColumn": "campaign_name"
+          },
+          {
+            "name": "product_key",
+            "dataType": "int64",
+            "sourceColumn": "product_key"
+          },
+          {
+            "name": "product_id",
+            "dataType": "string",
+            "sourceColumn": "product_id"
+          },
+          {
+            "name": "product_name",
+            "dataType": "string",
+            "sourceColumn": "product_name"
+          },
+          {
+            "name": "category",
+            "dataType": "string",
+            "sourceColumn": "category"
+          },
+          {
+            "name": "brand",
+            "dataType": "string",
+            "sourceColumn": "brand"
+          },
+          {
+            "name": "start_date",
+            "dataType": "dateTime",
+            "sourceColumn": "start_date"
+          },
+          {
+            "name": "end_date",
+            "dataType": "dateTime",
+            "sourceColumn": "end_date"
+          },
+          {
+            "name": "duration_days",
+            "dataType": "int64",
+            "sourceColumn": "duration_days"
+          },
+          {
+            "name": "discount_percentage",
+            "dataType": "decimal",
+            "sourceColumn": "discount_percentage"
+          },
+          {
+            "name": "campaign_cost",
+            "dataType": "decimal",
+            "sourceColumn": "campaign_cost"
+          },
+          {
+            "name": "campaign_revenue",
+            "dataType": "decimal",
+            "sourceColumn": "campaign_revenue"
+          },
+          {
+            "name": "campaign_units",
+            "dataType": "int64",
+            "sourceColumn": "campaign_units"
+          },
+          {
+            "name": "campaign_gross_profit",
+            "dataType": "decimal",
+            "sourceColumn": "campaign_gross_profit"
+          },
+          {
+            "name": "baseline_window_days",
+            "dataType": "int64",
+            "sourceColumn": "baseline_window_days"
+          },
+          {
+            "name": "baseline_daily_revenue",
+            "dataType": "double",
+            "sourceColumn": "baseline_daily_revenue"
+          },
+          {
+            "name": "baseline_daily_units",
+            "dataType": "double",
+            "sourceColumn": "baseline_daily_units"
+          },
+          {
+            "name": "expected_baseline_revenue",
+            "dataType": "decimal",
+            "sourceColumn": "expected_baseline_revenue"
+          },
+          {
+            "name": "expected_baseline_units",
+            "dataType": "decimal",
+            "sourceColumn": "expected_baseline_units"
+          },
+          {
+            "name": "incremental_revenue",
+            "dataType": "decimal",
+            "sourceColumn": "incremental_revenue"
+          },
+          {
+            "name": "incremental_units",
+            "dataType": "decimal",
+            "sourceColumn": "incremental_units"
+          },
+          {
+            "name": "incremental_gross_profit",
+            "dataType": "decimal",
+            "sourceColumn": "incremental_gross_profit"
+          },
+          {
+            "name": "roi",
+            "dataType": "double",
+            "sourceColumn": "roi"
+          },
+          {
+            "name": "roi_margin_based",
+            "dataType": "double",
+            "sourceColumn": "roi_margin_based"
+          },
+          {
+            "name": "uplift_pct",
+            "dataType": "double",
+            "sourceColumn": "uplift_pct"
+          },
+          {
+            "name": "is_profitable",
+            "dataType": "boolean",
+            "sourceColumn": "is_profitable"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "mart_campaign_roi-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"mart_campaign_roi.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"campaign_key\", Int64.Type}, {\"campaign_id\", type text}, {\"campaign_name\", type text}, {\"product_key\", Int64.Type}, {\"product_id\", type text}, {\"product_name\", type text}, {\"category\", type text}, {\"brand\", type text}, {\"start_date\", type datetime}, {\"end_date\", type datetime}, {\"duration_days\", Int64.Type}, {\"discount_percentage\", type number}, {\"campaign_cost\", type number}, {\"campaign_revenue\", type number}, {\"campaign_units\", Int64.Type}, {\"campaign_gross_profit\", type number}, {\"baseline_window_days\", Int64.Type}, {\"baseline_daily_revenue\", type number}, {\"baseline_daily_units\", type number}, {\"expected_baseline_revenue\", type number}, {\"expected_baseline_units\", type number}, {\"incremental_revenue\", type number}, {\"incremental_units\", type number}, {\"incremental_gross_profit\", type number}, {\"roi\", type number}, {\"roi_margin_based\", type number}, {\"uplift_pct\", type number}, {\"is_profitable\", type logical}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "columns": [
+          {
+            "name": "_placeholder",
+            "dataType": "string",
+            "sourceColumn": "_placeholder",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures-partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #table({\"_placeholder\"}, {{\"\"}})",
+                "in",
+                "    Source"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Revenue",
+            "expression": "SUM ( fact_sales[net_revenue] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Units Sold",
+            "expression": "SUM ( fact_sales[quantity] )",
+            "formatString": "#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Transactions",
+            "expression": "DISTINCTCOUNT ( fact_sales[transaction_id] )",
+            "formatString": "#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Total COGS",
+            "expression": "SUM ( fact_sales[cogs] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "SUM ( fact_sales[gross_profit] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Gross Margin %",
+            "expression": "DIVIDE ( [Gross Profit], [Total Revenue] )",
+            "formatString": "0.0%",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Gross Sales",
+            "expression": "SUM ( fact_sales[gross_amount] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Total Discount",
+            "expression": "SUM ( fact_sales[discount_amount] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Discount Rate %",
+            "expression": "DIVIDE ( [Total Discount], [Gross Sales] )",
+            "formatString": "0.0%",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Average Basket Value",
+            "expression": "DIVIDE ( [Total Revenue], [Transactions] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Units per Transaction",
+            "expression": "DIVIDE ( [Units Sold], [Transactions] )",
+            "formatString": "0.00",
+            "displayFolder": "Sales"
+          },
+          {
+            "name": "Promoted Revenue",
+            "expression": "CALCULATE ( [Total Revenue], fact_sales[is_promoted] = TRUE () )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Promotion"
+          },
+          {
+            "name": "Non-Promoted Revenue",
+            "expression": "CALCULATE ( [Total Revenue], fact_sales[is_promoted] = FALSE () )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Promotion"
+          },
+          {
+            "name": "Promoted Revenue %",
+            "expression": "DIVIDE ( [Promoted Revenue], [Total Revenue] )",
+            "formatString": "0.0%",
+            "displayFolder": "Promotion"
+          },
+          {
+            "name": "Promoted Units",
+            "expression": "CALCULATE ( [Units Sold], fact_sales[is_promoted] = TRUE () )",
+            "formatString": "#,0",
+            "displayFolder": "Promotion"
+          },
+          {
+            "name": "Campaign Cost",
+            "expression": "SUM ( mart_campaign_roi[campaign_cost] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Campaign Revenue",
+            "expression": "SUM ( mart_campaign_roi[campaign_revenue] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Incremental Revenue",
+            "expression": "SUM ( mart_campaign_roi[incremental_revenue] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Incremental Units",
+            "expression": "SUM ( mart_campaign_roi[incremental_units] )",
+            "formatString": "#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Incremental Gross Profit",
+            "expression": "SUM ( mart_campaign_roi[incremental_gross_profit] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Portfolio ROI",
+            "expression": "DIVIDE ( [Incremental Revenue] - [Campaign Cost], [Campaign Cost] )",
+            "formatString": "0.00",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Portfolio ROI (Margin)",
+            "expression": "DIVIDE ( [Incremental Gross Profit] - [Campaign Cost], [Campaign Cost] )",
+            "formatString": "0.00",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Average Campaign ROI",
+            "expression": "AVERAGE ( mart_campaign_roi[roi] )",
+            "formatString": "0.00",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Campaign Count",
+            "expression": "COUNTROWS ( mart_campaign_roi )",
+            "formatString": "#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Profitable Campaigns",
+            "expression": "COUNTROWS ( FILTER ( mart_campaign_roi, mart_campaign_roi[roi] > 0 ) )",
+            "formatString": "#,0",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Profitable Campaign %",
+            "expression": "DIVIDE ( [Profitable Campaigns], [Campaign Count] )",
+            "formatString": "0.0%",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Campaign Uplift %",
+            "expression": "DIVIDE ( [Incremental Revenue], SUM ( mart_campaign_roi[expected_baseline_revenue] ) )",
+            "formatString": "0.0%",
+            "displayFolder": "Campaign ROI"
+          },
+          {
+            "name": "Avg Inventory Units",
+            "expression": [
+              "AVERAGEX (",
+              "    VALUES ( fact_inventory_snapshot[snapshot_date] ),",
+              "    CALCULATE ( SUM ( fact_inventory_snapshot[stock_quantity] ) )",
+              ")"
+            ],
+            "formatString": "#,0",
+            "displayFolder": "Inventory"
+          },
+          {
+            "name": "Avg Inventory Value",
+            "expression": [
+              "AVERAGEX (",
+              "    VALUES ( fact_inventory_snapshot[snapshot_date] ),",
+              "    CALCULATE ( SUM ( fact_inventory_snapshot[stock_value_at_cost] ) )",
+              ")"
+            ],
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Inventory"
+          },
+          {
+            "name": "Closing Stock Units",
+            "expression": [
+              "CALCULATE (",
+              "    SUM ( fact_inventory_snapshot[stock_quantity] ),",
+              "    LASTNONBLANK ( fact_inventory_snapshot[snapshot_date], 1 )",
+              ")"
+            ],
+            "formatString": "#,0",
+            "displayFolder": "Inventory"
+          },
+          {
+            "name": "Inventory Turnover",
+            "expression": "DIVIDE ( [Total COGS], [Avg Inventory Value] )",
+            "formatString": "0.00",
+            "displayFolder": "Inventory"
+          },
+          {
+            "name": "Days of Supply",
+            "expression": [
+              "VAR DaysInContext = COUNTROWS ( VALUES ( dim_date[date] ) )",
+              "RETURN",
+              "    DIVIDE ( DaysInContext, [Inventory Turnover] )"
+            ],
+            "formatString": "0.00",
+            "displayFolder": "Inventory"
+          },
+          {
+            "name": "Revenue Prior Month",
+            "expression": "CALCULATE ( [Total Revenue], DATEADD ( dim_date[date], -1, MONTH ) )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Time"
+          },
+          {
+            "name": "Revenue MoM %",
+            "expression": "DIVIDE ( [Total Revenue] - [Revenue Prior Month], [Revenue Prior Month] )",
+            "formatString": "0.0%",
+            "displayFolder": "Time"
+          },
+          {
+            "name": "Revenue YTD",
+            "expression": "TOTALYTD ( [Total Revenue], dim_date[date] )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Time"
+          },
+          {
+            "name": "Store Rank by Revenue",
+            "expression": "RANKX ( ALLSELECTED ( dim_store[store_name] ), [Total Revenue],, DESC, DENSE )",
+            "formatString": "#,0",
+            "displayFolder": "Store"
+          },
+          {
+            "name": "Revenue per Store",
+            "expression": "DIVIDE ( [Total Revenue], DISTINCTCOUNT ( dim_store[store_key] ) )",
+            "formatString": "\\\u20b9#,0;(\\\u20b9#,0);\\\u20b9#,0",
+            "displayFolder": "Store"
+          },
+          {
+            "name": "Revenue % of Total",
+            "expression": "DIVIDE ( [Total Revenue], CALCULATE ( [Total Revenue], ALLSELECTED ( dim_store ) ) )",
+            "formatString": "0.0%",
+            "displayFolder": "Store"
+          },
+          {
+            "name": "Unattributed Campaign Rows",
+            "expression": "CALCULATE ( COUNTROWS ( fact_sales ), fact_sales[campaign_resolved] = FALSE () )",
+            "formatString": "#,0",
+            "displayFolder": "Data Quality"
+          },
+          {
+            "name": "Campaign Attribution %",
+            "expression": [
+              "DIVIDE (",
+              "    CALCULATE ( COUNTROWS ( fact_sales ), fact_sales[campaign_resolved] = TRUE () ),",
+              "    COUNTROWS ( fact_sales )",
+              ")"
+            ],
+            "formatString": "0.0%",
+            "displayFolder": "Data Quality"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "rel_fact_sales_date_key_dim_date",
+        "fromTable": "fact_sales",
+        "fromColumn": "date_key",
+        "toTable": "dim_date",
+        "toColumn": "date_key"
+      },
+      {
+        "name": "rel_fact_sales_product_key_dim_product",
+        "fromTable": "fact_sales",
+        "fromColumn": "product_key",
+        "toTable": "dim_product",
+        "toColumn": "product_key"
+      },
+      {
+        "name": "rel_fact_sales_store_key_dim_store",
+        "fromTable": "fact_sales",
+        "fromColumn": "store_key",
+        "toTable": "dim_store",
+        "toColumn": "store_key"
+      },
+      {
+        "name": "rel_fact_sales_campaign_key_dim_campaign",
+        "fromTable": "fact_sales",
+        "fromColumn": "campaign_key",
+        "toTable": "dim_campaign",
+        "toColumn": "campaign_key"
+      },
+      {
+        "name": "rel_fact_inventory_snapshot_date_key_dim_date",
+        "fromTable": "fact_inventory_snapshot",
+        "fromColumn": "date_key",
+        "toTable": "dim_date",
+        "toColumn": "date_key"
+      },
+      {
+        "name": "rel_fact_inventory_snapshot_product_key_dim_product",
+        "fromTable": "fact_inventory_snapshot",
+        "fromColumn": "product_key",
+        "toTable": "dim_product",
+        "toColumn": "product_key"
+      },
+      {
+        "name": "rel_fact_inventory_snapshot_store_key_dim_store",
+        "fromTable": "fact_inventory_snapshot",
+        "fromColumn": "store_key",
+        "toTable": "dim_store",
+        "toColumn": "store_key"
+      },
+      {
+        "name": "rel_mart_campaign_roi_campaign_key_dim_campaign",
+        "fromTable": "mart_campaign_roi",
+        "fromColumn": "campaign_key",
+        "toTable": "dim_campaign",
+        "toColumn": "campaign_key"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"dim_date\", \"dim_product\", \"dim_store\", \"dim_campaign\", \"fact_sales\", \"fact_inventory_snapshot\", \"mart_campaign_roi\", \"_Measures\"]"
+      }
+    ]
+  }
+}

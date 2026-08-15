@@ -1,0 +1,29 @@
+store_id,store_name,city,state,region,store_format,open_date,last_modified_timestamp
+S001,RetailIntel Mumbai Hypermarket,Mumbai,Maharashtra,West,Hypermarket,2022-12-27,2024-12-15 09:00:00
+S002,RetailIntel Pune Express,Pune,Maharashtra,West,Express,2016-10-01,2024-12-15 09:00:00
+S003,RetailIntel Ahmedabad Supermarket,Ahmedabad,Gujarat,West,Supermarket,2022-08-22,2024-12-15 09:00:00
+S004,RetailIntel Surat Supermarket,Surat,Gujarat,West,Supermarket,2023-07-13,2024-12-15 09:00:00
+S005,RetailIntel Delhi Express,Delhi,Delhi,North,Express,2017-02-25,2024-12-15 09:00:00
+S006,RetailIntel Gurugram Hypermarket,Gurugram,Haryana,North,Hypermarket,2017-03-26,2024-12-15 09:00:00
+S007,RetailIntel Noida Supermarket,Noida,Uttar Pradesh,North,Supermarket,2019-12-30,2024-12-15 09:00:00
+S008,RetailIntel Jaipur Hypermarket,Jaipur,Rajasthan,North,Hypermarket,2020-10-09,2024-12-15 09:00:00
+S009,RetailIntel Lucknow Supermarket,Lucknow,Uttar Pradesh,North,Supermarket,2019-10-18,2024-12-15 09:00:00
+S010,RetailIntel Chandigarh Express,Chandigarh,Punjab,North,Express,2019-11-28,2024-12-15 09:00:00
+S011,RetailIntel Bengaluru Supermarket,Bengaluru,Karnataka,South,Supermarket,2023-01-15,2024-12-15 09:00:00
+S012,RetailIntel Mysuru Supermarket,Mysuru,Karnataka,South,Supermarket,2017-10-02,2024-12-15 09:00:00
+S013,RetailIntel Chennai Supermarket,Chennai,Tamil Nadu,South,Supermarket,2020-06-05,2024-12-15 09:00:00
+S014,RetailIntel Coimbatore Hypermarket,Coimbatore,Tamil Nadu,South,Hypermarket,2018-03-08,2024-12-15 09:00:00
+S015,RetailIntel Hyderabad Hypermarket,Hyderabad,Telangana,South,Hypermarket,2021-10-28,2024-12-15 09:00:00
+S016,RetailIntel Kochi Express,Kochi,Kerala,South,Express,2021-02-05,2024-12-15 09:00:00
+S017,RetailIntel Visakhapatnam Express,Visakhapatnam,Andhra Pradesh,South,Express,2017-07-23,2024-12-15 09:00:00
+S018,RetailIntel Kolkata Hypermarket,Kolkata,West Bengal,East,Hypermarket,2020-08-24,2024-12-15 09:00:00
+S019,RetailIntel Bhubaneswar Express,Bhubaneswar,Odisha,East,Express,2018-09-14,2024-12-15 09:00:00
+S020,RetailIntel Patna Express,Patna,Bihar,East,Express,2023-01-24,2024-12-15 09:00:00
+S021,RetailIntel Guwahati Supermarket,Guwahati,Assam,East,Supermarket,2019-09-26,2024-12-15 09:00:00
+S022,RetailIntel Ranchi Supermarket,Ranchi,Jharkhand,East,Supermarket,2023-03-10,2024-12-15 09:00:00
+S023,RetailIntel Nagpur Supermarket,Nagpur,Maharashtra,West,Supermarket,2023-06-26,2024-12-15 09:00:00
+S024,RetailIntel Indore Hypermarket,Indore,Madhya Pradesh,Central,Hypermarket,2019-04-07,2024-12-15 09:00:00
+S025,RetailIntel Bhopal Express,Bhopal,Madhya Pradesh,Central,Express,2020-10-24,2024-12-15 09:00:00
+S026,RetailIntel Raipur Supermarket,Raipur,Chhattisgarh,Central,Supermarket,2022-12-13,2024-12-15 09:00:00
+S027,RetailIntel Vadodara Hypermarket,Vadodara,Gujarat,West,Hypermarket,2022-10-12,2024-12-15 09:00:00
+S028,RetailIntel Thane Supermarket,Thane,Maharashtra,West,Supermarket,2019-02-05,2024-12-15 09:00:00

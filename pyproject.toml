@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailintel"
+version = "0.1.0"
+description = "RetailIntel — Enterprise Retail Promotion Intelligence Lakehouse"
+requires-python = ">=3.10"
+
+# Packaged as a wheel so the same code that runs locally is installed on the
+# Databricks job cluster as a library. This is deliberate: shipping shared logic
+# as a versioned artifact is the standard production pattern, and it keeps the
+# notebooks as thin entry points rather than copies of the logic.
+#
+# PySpark and delta-spark are NOT listed as dependencies — the Databricks
+# Runtime provides both, and installing a second copy on the cluster would
+# shadow the tuned runtime versions.
+
+[tool.setuptools]
+packages = [
+    "config",
+    "src",
+    "src.common",
+    "src.bronze",
+    "src.silver",
+    "src.gold",
+    "src.quality",
+    "src.benchmark",
+    "src.data_generation",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]

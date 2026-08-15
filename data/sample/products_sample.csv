@@ -1,0 +1,51 @@
+product_id,product_name,category,sub_category,brand,unit_cost,list_price,last_modified_timestamp
+P0001,Pinecrest Bath 430,Personal Care,Bath,Pinecrest,6.94,11.73,2024-12-15 09:00:00
+P0002,Greenfield Pasta & Rice 387,Packaged Food,Pasta & Rice,Greenfield,11.09,14.49,2024-12-15 09:00:00
+P0003,Northwind Biscuits 634,Snacks,Biscuits,Northwind,7.86,11.81,2024-12-15 09:00:00
+P0004,Aurora Juices 960,Beverages,Juices,Aurora,0.67,1.26,2024-12-15 09:00:00
+P0005,Aurora Frozen Meals 715,Frozen,Frozen Meals,Aurora,12.5,17.04,2024-12-15 09:00:00
+P0006,Vantage Water 159,Beverages,Water,Vantage,2.86,4.19,2024-12-15 09:00:00
+P0007,Solera Bath 611,Personal Care,Bath,Solera,6.08,9.25,2024-12-15 09:00:00
+P0008,Silverline Ice Cream 701,Frozen,Ice Cream,Silverline,2.94,4.42,2024-12-15 09:00:00
+P0009,Greenfield Water 479,Beverages,Water,Greenfield,3.51,6.71,2024-12-15 09:00:00
+P0010,Fairmont Coffee & Tea 423,Beverages,Coffee & Tea,Fairmont,6.76,9.07,2024-12-15 09:00:00
+P0011,Marlow Sauces 722,Packaged Food,Sauces,Marlow,3.88,5.02,2024-12-15 09:00:00
+P0012,Silverline Milk 763,Dairy,Milk,Silverline,9.78,13.81,2024-12-15 09:00:00
+P0013,Marlow Canned 929,Packaged Food,Canned,Marlow,3.48,5.22,2024-12-15 09:00:00
+P0014,Blue Harbour Pasta & Rice 200,Packaged Food,Pasta & Rice,Blue Harbour,5.08,6.97,2024-12-15 09:00:00
+P0015,Kestrel Nuts 127,Snacks,Nuts,Kestrel,5.5,7.09,2024-12-15 09:00:00
+P0016,Vantage Bath 319,Personal Care,Bath,Vantage,14.54,19.79,2024-12-15 09:00:00
+P0017,Blue Harbour Skin Care 786,Personal Care,Skin Care,Blue Harbour,13.95,17.97,2024-12-15 09:00:00
+P0018,Marlow Biscuits 463,Snacks,Biscuits,Marlow,3.76,5.12,2024-12-15 09:00:00
+P0019,Pinecrest Soft Drinks 832,Beverages,Soft Drinks,Pinecrest,5.11,8.11,2024-12-15 09:00:00
+P0020,Blue Harbour Coffee & Tea 251,Beverages,Coffee & Tea,Blue Harbour,4.56,7.97,2024-12-15 09:00:00
+P0021,Kestrel Juices 112,Beverages,Juices,Kestrel,3.02,4.62,2024-12-15 09:00:00
+P0022,Marlow Skin Care 196,Personal Care,Skin Care,Marlow,6.81,12.64,2024-12-15 09:00:00
+P0023,Blue Harbour Soft Drinks 123,Beverages,Soft Drinks,Blue Harbour,1.3,2.24,2024-12-15 09:00:00
+P0024,Blue Harbour Skin Care 282,Personal Care,Skin Care,Blue Harbour,5.18,7.31,2024-12-15 09:00:00
+P0025,Silverline Nuts 132,Snacks,Nuts,Silverline,0.74,1.42,2024-12-15 09:00:00
+P0026,Greenfield Frozen Veg 949,Frozen,Frozen Veg,Greenfield,11.5,17.32,2024-12-15 09:00:00
+P0027,Northwind Frozen Meals 658,Frozen,Frozen Meals,Northwind,7.95,14.83,2024-12-15 09:00:00
+P0028,Fairmont Oral Care 710,Personal Care,Oral Care,Fairmont,8.75,16.39,2024-12-15 09:00:00
+P0029,Fairmont Milk 255,Dairy,Milk,Fairmont,2.85,3.89,2024-12-15 09:00:00
+P0030,Marlow Frozen Meals 590,Frozen,Frozen Meals,Marlow,6.41,9.21,2024-12-15 09:00:00
+P0031,Blue Harbour Frozen Veg 205,Frozen,Frozen Veg,Blue Harbour,6.87,10.69,2024-12-15 09:00:00
+P0032,Blue Harbour Milk 116,Dairy,Milk,Blue Harbour,6.02,8.54,2024-12-15 09:00:00
+P0033,Halcyon Chocolate 395,Snacks,Chocolate,Halcyon,2.23,3.62,2024-12-15 09:00:00
+P0034,Marlow Chips 614,Snacks,Chips,Marlow,5.28,8.6,2024-12-15 09:00:00
+P0035,Solera Pasta & Rice 486,Packaged Food,Pasta & Rice,Solera,5.56,10.3,2024-12-15 09:00:00
+P0036,Pinecrest Water 309,Beverages,Water,Pinecrest,3.44,4.57,2024-12-15 09:00:00
+P0037,Vantage Detergents 829,Home Care,Detergents,Vantage,12.16,17.63,2024-12-15 09:00:00
+P0038,Fairmont Pasta & Rice 897,Packaged Food,Pasta & Rice,Fairmont,8.3,13.9,2024-12-15 09:00:00
+P0039,Vantage Cleaners 542,Home Care,Cleaners,Vantage,2.08,2.78,2024-12-15 09:00:00
+P0040,Silverline Juices 833,Beverages,Juices,Silverline,2.93,4.71,2024-12-15 09:00:00
+P0041,Silverline Canned 734,Packaged Food,Canned,Silverline,4.15,6.6,2024-12-15 09:00:00
+P0042,Halcyon Juices 131,Beverages,Juices,Halcyon,2.66,5.03,2024-12-15 09:00:00
+P0043,Pinecrest Milk 891,Dairy,Milk,Pinecrest,6.81,10.83,2024-12-15 09:00:00
+P0044,Greenfield Skin Care 298,Personal Care,Skin Care,Greenfield,2.31,3.15,2024-12-15 09:00:00
+P0045,Vantage Nuts 360,Snacks,Nuts,Vantage,2.24,3.42,2024-12-15 09:00:00
+P0046,Halcyon Yoghurt 883,Dairy,Yoghurt,Halcyon,5.57,9.46,2024-12-15 09:00:00
+P0047,Pinecrest Butter 767,Dairy,Butter,Pinecrest,8.48,12.32,2024-12-15 09:00:00
+P0048,Pinecrest Chocolate 421,Snacks,Chocolate,Pinecrest,1.98,3.44,2024-12-15 09:00:00
+P0049,Pinecrest Milk 397,Dairy,Milk,Pinecrest,6.05,10.55,2024-12-15 09:00:00
+P0050,Silverline Juices 210,Beverages,Juices,Silverline,0.86,1.24,2024-12-15 09:00:00

@@ -1,0 +1,16 @@
+{
+  "name": "ls_adls_gen2",
+  "properties": {
+    "description": "ADLS Gen2 lakehouse storage. Authenticates with the Data Factory system-assigned managed identity - no account key, no connection string, nothing to leak or rotate. The identity is granted 'Storage Blob Data Contributor' scoped to this one storage account.",
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://@{linkedService().storage_account}.dfs.core.windows.net"
+    },
+    "parameters": {
+      "storage_account": {
+        "type": "string"
+      }
+    },
+    "annotations": ["RetailIntel"]
+  }
+}
